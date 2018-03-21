@@ -28,10 +28,10 @@ hunyin_MAP = {
 }
 zhengzhimianmao_MAP = {
     (0, '团员'),
-    (0, '群众'),
-    (0, '党员'),
-    (0, '预备党员'),
-    (0, '无党派人士')
+    (1, '群众'),
+    (2, '党员'),
+    (3, '预备党员'),
+    (4, '无党派人士')
 }
 laiyuan_MAP = {
     (0, '普通全日制应届本科毕业生')
@@ -68,6 +68,7 @@ class Student(models.Model):
     postcode = models.IntegerField(max_length=100, verbose_name='邮政编码')
     fixphone = models.IntegerField(max_length=30, verbose_name='固定电话')
     telephone = models.CharField(max_length=11, verbose_name='移动电话')
+    password = models.CharField(verbose_name='密码')
     email = models.CharField(max_length=30, verbose_name='电子信箱', blank=True)
     laiyuan = models.IntegerField(default=0, choices=laiyuan_MAP, verbose_name='考生来源')
     graduation_type = models.IntegerField(default=0, choices=graduation_type_MAP,verbose_name='取得最后学历的学习形式')
@@ -98,6 +99,8 @@ class TarGetSchool(models.Model):
     name = models.CharField(verbose_name='报考单位名称')
     departmentsName = models.IntegerField(default=0, choices=departmentsNameNameMAP, verbose_name='报考院系的名称')
     professionalName = models.IntegerField(default=0, choices=professionalNameMAP, verbose_name='包括专业名称')
-    researchDirection models.IntegerField(default=0, choices=researchDirectionMAP, verbose_name='研究方向')
-    
+    researchDirection = models.IntegerField(default=0, choices=researchDirectionMAP, verbose_name='研究方向')
+    examCourse = models.IntegerField(default=0, choices=examCourseMAP, verbose_name='考试科目')
+    examProvince = models.IntegerField(default=0, choices=examProvinceMAP, verbose_name='报考点所在省份')   
+    examSchool = models.IntegerField(default=0, choices=examSchoolMAP, verbose_name='报考点')
 
