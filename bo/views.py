@@ -1,76 +1,37 @@
 from django.shortcuts import render
-
+from .models import Login, Student
 # Create your views here.
 
-def wechat_login(request):
+
+
+def login_in(request):
+
+    return render(request, 'login/login_in.html')
+
+def sign_up(request):
     ctx = {}
-
-    if request.method == 'GET':
-        code = request.GET.get('code')
-        ctx['next'] = url_back = request.GET.get('state')
-
-        cache = WechatCache.objects.filter(code=code).first()
-        if cache:
-            wechat_response = json.loads(cache.api_response)
-        else:
-            wechat_token_api = 'https://api.weixin.qq.com/sns/oauth2/access_token'
-            wechat_token_params = {
-                'appid': settings.APP_ID,
-                'secret': settings.APP_SECRET,
-                'code': code,
-                'grant_type': 'authorization_code',
-            }
-            wechat_response = requests.get(wechat_token_api, params=wechat_token_params).json()
-            WechatCache.objects.create(code=code, api_response=json.dumps(wechat_response))
-            
-        access_token = wechat_response['access_token']
-        ctx['wechat_id'] = wechat_id = wechat_response['openid']
-
-        try:
-            student = Student.objects.get(wechat_id=wechat_id, status=0)
-            request.session['student_id'] = student.id
-            return redirect(url_back)
-
-        except Student.DoesNotExist:
-            wechat_profile_api = 'https://api.weixin.qq.com/sns/userinfo'
-            wechat_profile_params = {
-                'access_token': access_token,
-                'openid': wechat_id,
-                'lang': 'zh_CN',
-            }
-            wechat_response = requests.get(wechat_profile_api, params=wechat_profile_params).content
-            wechat_profile = json.loads(wechat_response.decode('utf-8'))
-
-            ctx['name'] = wechat_profile['nickname']
-            ctx['headimg'] = wechat_profile['headimgurl']
-
-            return render(request, 'student/login.html', ctx)
-
     if request.method == 'POST':
-        ctx['phone'] = phone = request.POST.get('phone', '')
-        ctx['name'] = name = request.POST.get('name', '')
-        ctx['wechat_id'] = wechat_id = request.POST.get('wechat_id', '')
-        ctx['headimg'] = headimg = request.POST.get('headimg', '')
-        ctx['next'] = url_back = request.POST.get('next', '/student/event/list')
+        name = request.POST.get('name', '')
+        zhengjian_number = request.POST.get('zhengjian_number', '')
+        telephone = request.POST.get('telephone', '')
+        yzm = request.POST.get('yzm', '')
+        password = request.POST.get('password', '')
 
-        validation_code = request.POST.get('validation_code', '')
+        Login.objects.create(name=name, zhengjian_number=zhengjian_number, telephone=telephone, password=password)
+        ctx['haoma'] = Login.objects.filter()
+    return render(request, 'login/sign_up.html')
 
-        if Student.objects.filter(wechat_id=wechat_id, status=0).exists():
-            ctx['error'] = '微信ID已绑定'
-            return render(request, 'student/login.html', ctx)
+def login_in(request):
+    if request.method == 'POST':
+        telephone = request.POST.get('telephone', '')
+        password = request.POST.get('password', '')
+        flag = Login.objects.filter(telephone=telephone, password=password).first()
+        if flag:
+            return render(request, 'login/index.html')
+        else:
+            return render(request, 'login/login_in.html')
+    return render(request, 'login/login_in.html')
 
-        if Student.objects.filter(phone=phone, status=0).exists():
-            ctx['error'] = '手机已绑定'
-            return render(request, 'student/login.html', ctx)
-
-        if validation_code != '123456':
-            ctx['error'] = '验证码错误'
-            return render(request, 'student/login.html', ctx)
-
-        if not name:
-            ctx['error'] = '姓名不能为空'
-            return render(request, 'student/login.html', ctx)            
-
-        student = Student.objects.create(wechat_id=wechat_id, phone=phone, name=name)
-        request.session['student_id'] = student.id
-        return redirect(url_back)
+def baoming(request):
+    
+    return render(request, 'login/baoming.html')

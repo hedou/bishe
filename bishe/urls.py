@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from bo import views as bo_views
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login_in/', bo_views.login_in),
+    path('sign_up/', bo_views.sign_up),
+    path('baoming/', bo_views.baoming),
 ]
