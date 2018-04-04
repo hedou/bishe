@@ -79,3 +79,8 @@ def baoming(request):
             examSchool=examSchool)
         return render(request, 'login/update.html')
     return render(request, 'login/baoming.html')
+
+def updatepwd(request):
+
+    return render(request, '')
+
