@@ -90,7 +90,9 @@ class Student(models.Model):
     email = models.CharField(max_length=30, verbose_name='电子信箱', blank=True)
     laiyuan = models.IntegerField(default=0, choices=laiyuan_MAP, verbose_name='考生来源')
     graduation_type = models.IntegerField(default=0, choices=graduation_type_MAP,verbose_name='取得最后学历的学习形式')
-    graduation_time = models.DateTimeField(verbose_name='获得最后学历的毕业年月')
+    graduation_time = models.DateField(verbose_name='获得最后学历的毕业年月')
+
+
     studentId = models.CharField(max_length=300, verbose_name='注册学号')
     graduation_school = models.IntegerField(default=0, choices=graduation_school_MAP, verbose_name='毕业学校')
     graduation_zhuanye = models.IntegerField(default=0, choices=graduation_zhuanye, verbose_name='毕业专业')

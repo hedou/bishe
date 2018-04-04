@@ -1,16 +1,10 @@
 <html lang="zh-hans"><head>
-<title>增加 学生 | 研究生报名系统</title>
+<title>修改 学生 | 研究生报名系统</title>
 <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
 <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
 
 
-<script type="text/javascript" src="/admin/jsi18n/"></script><style type="text/css">
-:root .adsbox,
-:root #wrapper > div[style="padding:3px;"] > #pic,
-:root #content > #right > .dose > .dosesingle,
-:root #content > #center > .dose > .dosesingle,
-:root #header + #content > #left > #rlblock_left
-{ display: none !important; }</style>
+<script type="text/javascript" src="/admin/jsi18n/"></script>
 <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
 <script type="text/javascript" src="/static/admin/js/core.js"></script>
@@ -28,7 +22,13 @@
     
 
 <meta name="robots" content="NONE,NOARCHIVE">
-</head>
+<style type="text/css">
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle,
+:root #header + #content > #left > #rlblock_left,
+:root #wrapper > div[style="padding:3px;"] > #pic,
+:root .adsbox
+{ display: none !important; }</style></head>
 
 
 <body class=" app-bo model-student change-form" data-admin-utc-offset="0">
@@ -71,12 +71,12 @@
     </div> -->
     <!-- END Header -->
     
-<!-- <div class="breadcrumbs">
+<div class="breadcrumbs">
 <a href="/admin/">首页</a>
 › <a href="/admin/bo/">Bo</a>
 › <a href="/admin/bo/student/">学生</a>
-› 增加 学生
-</div> -->
+› dsf
+</div>
 
     
 
@@ -87,12 +87,22 @@
     <!-- Content -->
     <div id="content" class="colM">
         
-        <h1>考生报名</h1>
+        <h1>修改 学生</h1>
         <div id="content-main">
 
 
+  <ul class="object-tools">
+    
+    <li>
+        
+        <a href="/admin/bo/student/1/history/" class="historylink">历史</a>
+    </li>
+    
+    
+  </ul>
 
-<form enctype="multipart/form-data" action="" method="post" id="student_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="AvUafYTGwzm9TwHE3gtlASVESoKgWkpGE61pL98ltx9YGil9yZIetWaakf3VP10r">
+
+<form enctype="multipart/form-data" action="" method="post" id="student_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="hb0k0Q2749CQVIEcImPDindDl390IQTnlM7zw1hM17pFIuiHd54wbrs9NUsFBxu8">
 <div>
 
 
@@ -113,7 +123,7 @@
                     
                         <label class="required" for="id_name">考生姓名:</label>
                         
-                            <input type="text" name="name" id="id_name" maxlength="100" class="vTextField" required="">
+                            <input type="text" name="name" value="dsf" maxlength="100" class="vTextField" id="id_name" required="">
                         
                     
                     
@@ -129,7 +139,7 @@
                     
                         <label class="required" for="id_name_pinyin">姓名拼音:</label>
                         
-                            <input type="text" name="name_pinyin" id="id_name_pinyin" maxlength="100" class="vTextField" required="">
+                            <input type="text" name="name_pinyin" value="adsf" maxlength="100" class="vTextField" id="id_name_pinyin" required="">
                         
                     
                     
@@ -146,9 +156,9 @@
                         <label class="required" for="id_zhengjian_type">证件类型:</label>
                         
                             <select name="zhengjian_type" id="id_zhengjian_type">
-  <option value="1">第二代居民身份证</option>
-
   <option value="0" selected="">请选择证件类型</option>
+
+  <option value="1">第二代居民身份证</option>
 
 </select>
                         
@@ -166,7 +176,7 @@
                     
                         <label class="required" for="id_zhengjian_number">证件号码:</label>
                         
-                            <input type="text" name="zhengjian_number" id="id_zhengjian_number" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="zhengjian_number" value="1" maxlength="300" class="vTextField" id="id_zhengjian_number" required="">
                         
                     
                     
@@ -267,15 +277,15 @@
                         <label class="required" for="id_zhengzhimianmao">政治面貌:</label>
                         
                             <select name="zhengzhimianmao" id="id_zhengzhimianmao">
-  <option value="3">预备党员</option>
-
-  <option value="0" selected="">团员</option>
-
   <option value="2">党员</option>
+
+  <option value="1">群众</option>
 
   <option value="4">无党派人士</option>
 
-  <option value="1">群众</option>
+  <option value="0" selected="">团员</option>
+
+  <option value="3">预备党员</option>
 
 </select>
                         
@@ -293,7 +303,7 @@
                     
                         <label class="required" for="id_address">地址:</label>
                         
-                            <input type="text" name="address" id="id_address" maxlength="500" class="vTextField" required="">
+                            <input type="text" name="address" value="1" maxlength="500" class="vTextField" id="id_address" required="">
                         
                     
                     
@@ -309,7 +319,7 @@
                     
                         <label class="required" for="id_postcode">邮政编码:</label>
                         
-                            <input type="text" name="postcode" id="id_postcode" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="postcode" value="1" maxlength="300" class="vTextField" id="id_postcode" required="">
                         
                     
                     
@@ -325,7 +335,7 @@
                     
                         <label class="required" for="id_fixphone">固定电话:</label>
                         
-                            <input type="text" name="fixphone" id="id_fixphone" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="fixphone" value="1" maxlength="300" class="vTextField" id="id_fixphone" required="">
                         
                     
                     
@@ -341,7 +351,7 @@
                     
                         <label class="required" for="id_telephone">移动电话:</label>
                         
-                            <input type="text" name="telephone" id="id_telephone" maxlength="11" class="vTextField" required="">
+                            <input type="text" name="telephone" value="11" maxlength="11" class="vTextField" id="id_telephone" required="">
                         
                     
                     
@@ -349,7 +359,7 @@
             
         </div>
     
-       <!--  <div class="form-row field-password">
+        <div class="form-row field-password">
             
             
                 <div>
@@ -357,13 +367,13 @@
                     
                         <label class="required" for="id_password">密码:</label>
                         
-                            <input type="text" name="password" id="id_password" maxlength="30" class="vTextField" required="">
+                            <input type="text" name="password" value="1" maxlength="30" class="vTextField" id="id_password" required="">
                         
                     
                     
                 </div>
             
-        </div> -->
+        </div>
     
         <div class="form-row field-email">
             
@@ -373,7 +383,7 @@
                     
                         <label for="id_email">电子信箱:</label>
                         
-                            <input type="text" name="email" id="id_email" maxlength="30" class="vTextField">
+                            <input type="text" name="email" value="1" maxlength="30" class="vTextField" id="id_email">
                         
                     
                     
@@ -427,12 +437,11 @@
                     
                         <label class="required" for="id_graduation_time">获得最后学历的毕业年月:</label>
                         
-                            <input type="text" name="graduation_time" size="10" class="vDateField" id="id_graduation_time" required="">
-                            <span class="datetimeshortcuts">&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#" id="calendarlink0"><span class="date-icon" title="选择一个日期"></span></a></span>
+                            <input type="text" name="graduation_time" value="2018/04/02" class="vDateField" id="id_graduation_time" size="10" required=""><span class="datetimeshortcuts">&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#" id="calendarlink0"><span class="date-icon" title="选择一个日期"></span></a></span>
                         
                     
                     
-               
+                <br><span class="timezonewarning">注意：你比服务器时间超前 8 个小时。</span></div>
             
         </div>
     
@@ -444,7 +453,7 @@
                     
                         <label class="required" for="id_studentId">注册学号:</label>
                         
-                            <input type="text" name="studentId" id="id_studentId" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="studentId" value="11" maxlength="300" class="vTextField" id="id_studentId" required="">
                         
                     
                     
@@ -517,7 +526,7 @@
                     
                         <label class="required" for="id_nativePlace">考生籍贯:</label>
                         
-                            <input type="text" name="nativePlace" id="id_nativePlace" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="nativePlace" value="1" maxlength="300" class="vTextField" id="id_nativePlace" required="">
                         
                     
                     
@@ -533,7 +542,7 @@
                     
                         <label class="required" for="id_registerLocation">户口所在地:</label>
                         
-                            <input type="text" name="registerLocation" id="id_registerLocation" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="registerLocation" value="11" maxlength="300" class="vTextField" id="id_registerLocation" required="">
                         
                     
                     
@@ -549,7 +558,7 @@
                     
                         <label class="required" for="id_registerLocationDetail">户口所在地详细地址:</label>
                         
-                            <input type="text" name="registerLocationDetail" id="id_registerLocationDetail" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="registerLocationDetail" value="1" maxlength="300" class="vTextField" id="id_registerLocationDetail" required="">
                         
                     
                     
@@ -565,7 +574,7 @@
                     
                         <label class="required" for="id_bornLocation">出生地省市:</label>
                         
-                            <input type="text" name="bornLocation" id="id_bornLocation" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="bornLocation" value="1" maxlength="300" class="vTextField" id="id_bornLocation" required="">
                         
                     
                     
@@ -581,7 +590,7 @@
                     
                         <label class="required" for="id_archivesLocation">档案所在地:</label>
                         
-                            <input type="text" name="archivesLocation" id="id_archivesLocation" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="archivesLocation" value="1" maxlength="300" class="vTextField" id="id_archivesLocation" required="">
                         
                     
                     
@@ -597,7 +606,7 @@
                     
                         <label class="required" for="id_archivesLocationZip">考生档案所在单位邮编:</label>
                         
-                            <input type="text" name="archivesLocationZip" id="id_archivesLocationZip" maxlength="300" class="vTextField" required="">
+                            <input type="text" name="archivesLocationZip" value="11" maxlength="300" class="vTextField" id="id_archivesLocationZip" required="">
                         
                     
                     
@@ -728,9 +737,9 @@
                         <label class="required" for="id_status">状态:</label>
                         
                             <select name="status" id="id_status">
-  <option value="0" selected="">正常</option>
-
   <option value="1">已删除</option>
+
+  <option value="0" selected="">正常</option>
 
 </select>
                         
@@ -755,16 +764,19 @@
 
 
 <div class="submit-row">
-<input type="submit" value="确认" class="default" name="_save">
+<input type="submit" value="保存" class="default" name="_save">
+
+    
+    <p class="deletelink-box"><a href="/admin/bo/student/1/delete/" class="deletelink">删除</a></p>
 
 
-<!-- <input type="submit" value="保存并增加另一个" name="_addanother">
-<input type="submit" value="保存并继续编辑" name="_continue"> -->
+<input type="submit" value="保存并增加另一个" name="_addanother">
+<input type="submit" value="保存并继续编辑" name="_continue">
 </div>
 
 
 
-    <script type="text/javascript" id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" data-model-name="student">
+    <script type="text/javascript" id="django-admin-form-add-constants" src="/static/admin/js/change_form.js">
     </script>
 
 
@@ -788,4 +800,4 @@
 
 
 
-<div class="calendarbox module" id="calendarbox0" style="display: none; position: absolute;"><div><a href="#" class="calendarnav-previous">&lt;</a><a href="#" class="calendarnav-next">&gt;</a></div><div id="calendarin0" class="calendar"><table><caption>三月 2018</caption><tbody><tr><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr><tr><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class=""><a href="#">1</a></td><td class=""><a href="#">2</a></td><td class=""><a href="#">3</a></td><td class=""><a href="#">4</a></td></tr><tr><td class=""><a href="#">5</a></td><td class=""><a href="#">6</a></td><td class=""><a href="#">7</a></td><td class=""><a href="#">8</a></td><td class=""><a href="#">9</a></td><td class=""><a href="#">10</a></td><td class=""><a href="#">11</a></td></tr><tr><td class=""><a href="#">12</a></td><td class=""><a href="#">13</a></td><td class=""><a href="#">14</a></td><td class=""><a href="#">15</a></td><td class=""><a href="#">16</a></td><td class=""><a href="#">17</a></td><td class=""><a href="#">18</a></td></tr><tr><td class=""><a href="#">19</a></td><td class=""><a href="#">20</a></td><td class=""><a href="#">21</a></td><td class=""><a href="#">22</a></td><td class=""><a href="#">23</a></td><td class=""><a href="#">24</a></td><td class=""><a href="#">25</a></td></tr><tr><td class=""><a href="#">26</a></td><td class=""><a href="#">27</a></td><td class=""><a href="#">28</a></td><td class=""><a href="#">29</a></td><td class="today"><a href="#">30</a></td><td class=""><a href="#">31</a></td><td class="nonday"> </td></tr></tbody></table></div><div class="calendar-shortcuts"><a href="#">昨天</a>&nbsp;|&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#">明天</a></div><p class="calendar-cancel"><a href="#">取消</a></p></div><div class="clockbox module" id="clockbox0" style="display: none; position: absolute;"><h2>选择一个时间</h2><ul class="timelist"><li><a href="#">现在</a></li><li><a href="#">午夜</a></li><li><a href="#">上午6点</a></li><li><a href="#">正午</a></li><li><a href="#">下午6点</a></li></ul><p class="calendar-cancel"><a href="#">取消</a></p></div></body></html>
+<div class="calendarbox module" id="calendarbox0" style="display: none; position: absolute;"><div><a href="#" class="calendarnav-previous">&lt;</a><a href="#" class="calendarnav-next">&gt;</a></div><div id="calendarin0" class="calendar"><table><caption>四月 2018</caption><tbody><tr><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr><tr><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class=""><a href="#">1</a></td></tr><tr><td class="today"><a href="#">2</a></td><td class=""><a href="#">3</a></td><td class=""><a href="#">4</a></td><td class=""><a href="#">5</a></td><td class=""><a href="#">6</a></td><td class=""><a href="#">7</a></td><td class=""><a href="#">8</a></td></tr><tr><td class=""><a href="#">9</a></td><td class=""><a href="#">10</a></td><td class=""><a href="#">11</a></td><td class=""><a href="#">12</a></td><td class=""><a href="#">13</a></td><td class=""><a href="#">14</a></td><td class=""><a href="#">15</a></td></tr><tr><td class=""><a href="#">16</a></td><td class=""><a href="#">17</a></td><td class=""><a href="#">18</a></td><td class=""><a href="#">19</a></td><td class=""><a href="#">20</a></td><td class=""><a href="#">21</a></td><td class=""><a href="#">22</a></td></tr><tr><td class=""><a href="#">23</a></td><td class=""><a href="#">24</a></td><td class=""><a href="#">25</a></td><td class=""><a href="#">26</a></td><td class=""><a href="#">27</a></td><td class=""><a href="#">28</a></td><td class=""><a href="#">29</a></td></tr><tr><td class=""><a href="#">30</a></td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td></tr></tbody></table></div><div class="calendar-shortcuts"><a href="#">昨天</a>&nbsp;|&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#">明天</a></div><p class="calendar-cancel"><a href="#">取消</a></p></div></body></html>

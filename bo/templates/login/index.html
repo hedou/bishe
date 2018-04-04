@@ -15,23 +15,26 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 </head>
 <script type="text/javascript">
 
-    $(function(){
+   
 
 
-    function toBaoMing(){
-        $("#ifr").src='/baoming/';
+    var toBaoMing = function(){
+        $("#ifr").name="toBaoMing";
     }
         
 
 
-    });
+    
 </script>
 <style type="text/css">
     #ifr{
         height: 100%;
+        height: 600px;
     }
 </style>
 <body>
@@ -74,10 +77,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 网上报名<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:toBaoMing();">网上报名</a>
+                                    <a href="/baoming/" target="student">网上报名</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">网上调剂（关闭）</a>
+                                    <a href="#" target="student">网上调剂（关闭）</a>
                                 </li>
                             </ul>
                         </li>
@@ -109,7 +112,7 @@
         </nav>
         <!--主体内容编写-->
         <div id="page-wrapper">
-			<iframe src="" id="ifr" width="100%" height="100%" frameborder="0" scrolling="yes" allowTransparency="true"></iframe>
+			<iframe src="" id="ifr" width="100%" height="100%" frameborder="0" scrolling="yes" allowTransparency="true" name="student"></iframe>
             
         </div>
     </div>
