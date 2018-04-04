@@ -4,9 +4,7 @@ from .models import Login, Student
 
 
 
-def login_in(request):
 
-    return render(request, 'login/login_in.html')
 
 def sign_up(request):
     ctx = {}
@@ -82,5 +80,8 @@ def baoming(request):
 
 def updatepwd(request):
 
-    return render(request, '')
+    return render(request, 'login/updatepwd.html')
 
+def edit(request):
+
+    return render(request, 'login/edit.html')
