@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from .models import Login, Student
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+from django.http import HttpResponse
 
-
+import random
+import urllib
+import http.client
+import json
 
 def login_in(request):
 
@@ -14,8 +17,20 @@ def sign_up(request):
     if request.method == 'POST':
         name = request.POST.get('name', '')
         zhengjian_number = request.POST.get('zhengjian_number', '')
-        telephone = request.POST.get('telephone', '')
-        yzm = request.POST.get('yzm', '')
+        telephone = request.POST.get('phone', '')
+        # yzm = request.POST.get('yzm', '')
+
+        ctx['validation_code'] = validation_code = request.POST.get('validation_code', '')
+        if not validation_code:
+            ctx['error'] = '验证码不能为空'
+            return render(request, 'login/sign_up.html', ctx)
+
+        vcode = request.session.get('vcode')
+        if validation_code != str(vcode):
+            ctx['error'] = '您输入的验证码不正确，请重新输入'
+            return render(request, 'login/sign_up.html', ctx)
+
+
         password = request.POST.get('password', '')
 
         Login.objects.create(name=name, zhengjian_number=zhengjian_number, telephone=telephone, password=password)
@@ -26,6 +41,7 @@ def login_in(request):
     if request.method == 'POST':
         telephone = request.POST.get('telephone', '')
         password = request.POST.get('password', '')
+
         flag = Login.objects.filter(telephone=telephone, password=password).first()
         if flag:
             return render(request, 'login/index.html')
