@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Login, Student
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -68,14 +69,50 @@ def baoming(request):
         examProvince = request.POST.get('examProvince', '')
         examSchool = request.POST.get('examSchool', '')
 
-        Student.objects.create(name=name, name_pinyin=name_pinyin, zhengjian_type=zhengjian_type, zhengjian_number=zhengjian_number, 
-            xianyijunren=xianyijunren, minzu=minzu, sex=sex, hunyin=hunyin, zhengzhimianmao=zhengzhimianmao, address=address, 
+        Student.objects.create(name=name, name_pinyin=name_pinyin, zhengjian_type=zhengjian_type, zhengjian_number=zhengjian_number,
+            xianyijunren=xianyijunren, minzu=minzu, sex=sex, hunyin=hunyin, zhengzhimianmao=zhengzhimianmao, address=address,
             postcode=postcode, fixphone=fixphone,
             telephone=telephone, email=email, laiyuan=laiyuan, graduation_type=graduation_type, graduation_time=graduation_time, studentId=studentId,
             graduation_school=graduation_school, graduation_zhuanye=graduation_zhuanye, baokao_type=baokao_type, nativePlace=nativePlace,
             registerLocation=registerLocation, registerLocationDetail=registerLocationDetail, bornLocation=bornLocation,
-            archivesLocation=archivesLocation, archivesLocationZip=archivesLocationZip, departmentsName=departmentsName, 
+            archivesLocation=archivesLocation, archivesLocationZip=archivesLocationZip, departmentsName=departmentsName,
             professionalName=professionalName, researchDirection=researchDirection, examCourse=examCourse, examProvince=examProvince,
             examSchool=examSchool)
         return render(request, 'login/update.html')
     return render(request, 'login/baoming.html')
+
+
+@csrf_exempt
+def verifycode(request):
+
+    # ssl._create_default_https_context = ssl._create_unverified_contex
+
+    num = random.randint(1000,9999)
+    mobile = request.POST.get('mobile','')
+
+    dic = {
+        'num':num
+    }
+
+    request.session['vcode'] = num
+
+    apikey = "3134abe67a8f44702a59ed156fc4bd1b"
+    text = "亲爱的用户，您的验证码是%d。有效期为24小时，请尽快验证" % num
+    print(text)
+    sms_host = "sms.yunpian.com"
+    port = 443
+    sms_send_uri = "/v2/sms/single_send.json"
+
+    params = urllib.parse.urlencode({'apikey': apikey, 'text': text, 'mobile':mobile})
+    headers = {
+        "Content-type": "application/x-www-form-urlencoded",
+        "Accept": "text/plain"
+    }
+    conn = http.client.HTTPSConnection(sms_host, port=port, timeout=30)
+    conn.request("POST", sms_send_uri, params, headers)
+    response = conn.getresponse()
+    response_str = response.read()
+    print(response_str.decode('utf-8'))
+    conn.close()
+
+    return HttpResponse(json.dumps(dic), content_type='application/json')
