@@ -23,6 +23,10 @@ urlpatterns = [
     path('login_in/', bo_views.login_in),
     path('sign_up/', bo_views.sign_up),
     path('baoming/', bo_views.baoming),
+
     path('updatepwd/', bo_views.updatepwd),
     path('edit/', bo_views.edit),
+
+    path('user/verifycode/', bo_views.verifycode),
+
 ]

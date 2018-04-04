@@ -24,9 +24,13 @@
             <br>
             <input type="text" name="zhengjian_number" class="form-control" placeholder="身份证号" value="{{phone}}">
             <br>
-            <input type="text" name="telephone" class="form-control" placeholder="手机号" value="{{phone}}">
+            <!-- <input type="text" name="telephone" class="form-control" placeholder="手机号" value="{{phone}}"> -->
+            <input id="j_phone" class="form-control" type="tel" name="phone" placeholder="请输入手机号">
             <br>
-            <input type="text" name="yzm" class="form-control" placeholder="验证码" value="{{phone}}">
+            <!-- <input type="text" name="yzm" class="form-control" placeholder="验证码" value="{{phone}}"> -->
+             <input id="vcode" name="validation_code"  type="number" pattern="[0-9]*" placeholder="请输入验证码">
+            <button type="button" id="j_getVerifyCode" class="btn btn-success">获取验证码</button>
+
             <br>
             <input type="password" name="password" class="form-control" placeholder="密码">
             <br>
@@ -39,5 +43,74 @@
 
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/TimerButton.js"></script>
+    <script type="text/javascript">
+        $(function (){
+            /*TimerButton是一个对象，该对象中有两个方法，一个是SecondCountDown，该方法的作用是精确倒计时。普通的使用setInterval倒计时会存在一定的偏差，特别是当我们切换窗口时，而SecondCountDown解决了这个误差问题（具体用法见timedown.html）。
+            另一个方法是verify，该方法的作用是实现按钮倒计时的功能，有了这个按钮倒计时就可以实现获取验证码倒计时的功能*/
+            console.log(timerButton);
+
+            var btn = $("#j_getVerifyCode");
+            timerButton.verify("#j_getVerifyCode", {
+                time: 60,//倒计时时间
+                event: "click",//事件触发方式
+                //执行条件，可以是function也可以是Boolean值，如果是函数则需返回true才会执行
+                condition: function () {
+                    var phoneReg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/,
+                        flag = phoneReg.test($("#j_phone").val());
+
+                    if(!flag){
+                        alert("电话号码填写不正确！");
+                        // $('#perror').html('电话号码填写不正确！')
+                        return false;
+                    }
+                    return true;
+                },
+                unableClass: "unabled",//按钮不能使用时的class
+                runningText: " s后重新获取",//计时正在进行中时按钮显示的文字
+                timeUpText: "重新获取",//时间到了时按钮显示的文字
+                progress: function (time) {//计时正在进行中时的回调
+                    btn.html(time + " s后重新获取");
+                    // console.log(this);//这里的this指向按钮
+                    // console.log(this.timedown);//这个timedown就是计时器
+                },
+                timeUp: function (time) {//计时结束时执行的回调
+                    btn.html("重新获取");
+                    // console.log("时间到了！");
+                    // console.log(this);//这里的this指向按钮
+                },
+                abort: function () {//中断计时
+                    btn.html("重新获取");
+                    // console.log("我被中断了！");
+                    // console.log(this);//这里的this指向按钮
+                },
+                eventFn: function () {//事件执行后的回调
+
+                    var mobile = $("#j_phone").val()
+                    // alert(mobile)
+                    // console.log(this);
+                    // console.log("执行了");
+                    // console.log(this);//这里的this指向按钮
+                     $.ajax({
+                            type:'POST',
+                            url:'/user/verifycode/',
+                            dataType:'json',
+                            data:{
+                                mobile:mobile
+                            },
+                            success:function(data){
+
+                                num = data['num']
+                                // alert(num)
+                            }
+                    });
+                }
+            });
+            //中断计时
+            // $("#abort_btn").on("click", function (){
+            //     document.getElementById("j_getVerifyCode").timedown.abort();
+            // });
+        });
+    </script>
 </body>
 </html>

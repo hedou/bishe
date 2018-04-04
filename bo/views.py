@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from .models import Login, Student
-# Create your views here.
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 
-
+import random
+import urllib
+import http.client
+import json
 
 
 
@@ -11,8 +15,20 @@ def sign_up(request):
     if request.method == 'POST':
         name = request.POST.get('name', '')
         zhengjian_number = request.POST.get('zhengjian_number', '')
-        telephone = request.POST.get('telephone', '')
-        yzm = request.POST.get('yzm', '')
+        telephone = request.POST.get('phone', '')
+        # yzm = request.POST.get('yzm', '')
+
+        ctx['validation_code'] = validation_code = request.POST.get('validation_code', '')
+        if not validation_code:
+            ctx['error'] = '验证码不能为空'
+            return render(request, 'login/sign_up.html', ctx)
+
+        vcode = request.session.get('vcode')
+        if validation_code != str(vcode):
+            ctx['error'] = '您输入的验证码不正确，请重新输入'
+            return render(request, 'login/sign_up.html', ctx)
+
+
         password = request.POST.get('password', '')
 
         Login.objects.create(name=name, zhengjian_number=zhengjian_number, telephone=telephone, password=password)
@@ -23,6 +39,7 @@ def login_in(request):
     if request.method == 'POST':
         telephone = request.POST.get('telephone', '')
         password = request.POST.get('password', '')
+
         flag = Login.objects.filter(telephone=telephone, password=password).first()
         if flag:
             return render(request, 'login/index.html')
@@ -66,17 +83,53 @@ def baoming(request):
         examProvince = request.POST.get('examProvince', '')
         examSchool = request.POST.get('examSchool', '')
 
-        Student.objects.create(name=name, name_pinyin=name_pinyin, zhengjian_type=zhengjian_type, zhengjian_number=zhengjian_number, 
-            xianyijunren=xianyijunren, minzu=minzu, sex=sex, hunyin=hunyin, zhengzhimianmao=zhengzhimianmao, address=address, 
+        Student.objects.create(name=name, name_pinyin=name_pinyin, zhengjian_type=zhengjian_type, zhengjian_number=zhengjian_number,
+            xianyijunren=xianyijunren, minzu=minzu, sex=sex, hunyin=hunyin, zhengzhimianmao=zhengzhimianmao, address=address,
             postcode=postcode, fixphone=fixphone,
             telephone=telephone, email=email, laiyuan=laiyuan, graduation_type=graduation_type, graduation_time=graduation_time, studentId=studentId,
             graduation_school=graduation_school, graduation_zhuanye=graduation_zhuanye, baokao_type=baokao_type, nativePlace=nativePlace,
             registerLocation=registerLocation, registerLocationDetail=registerLocationDetail, bornLocation=bornLocation,
-            archivesLocation=archivesLocation, archivesLocationZip=archivesLocationZip, departmentsName=departmentsName, 
+            archivesLocation=archivesLocation, archivesLocationZip=archivesLocationZip, departmentsName=departmentsName,
             professionalName=professionalName, researchDirection=researchDirection, examCourse=examCourse, examProvince=examProvince,
             examSchool=examSchool)
         return render(request, 'login/update.html')
     return render(request, 'login/baoming.html')
+
+
+@csrf_exempt
+def verifycode(request):
+
+    # ssl._create_default_https_context = ssl._create_unverified_contex
+
+    num = random.randint(1000,9999)
+    mobile = request.POST.get('mobile','')
+
+    dic = {
+        'num':num
+    }
+
+    request.session['vcode'] = num
+
+    apikey = "3134abe67a8f44702a59ed156fc4bd1b"
+    text = "亲爱的用户，您的验证码是%d。有效期为24小时，请尽快验证" % num
+    print(text)
+    sms_host = "sms.yunpian.com"
+    port = 443
+    sms_send_uri = "/v2/sms/single_send.json"
+
+    params = urllib.parse.urlencode({'apikey': apikey, 'text': text, 'mobile':mobile})
+    headers = {
+        "Content-type": "application/x-www-form-urlencoded",
+        "Accept": "text/plain"
+    }
+    conn = http.client.HTTPSConnection(sms_host, port=port, timeout=30)
+    conn.request("POST", sms_send_uri, params, headers)
+    response = conn.getresponse()
+    response_str = response.read()
+    print(response_str.decode('utf-8'))
+    conn.close()
+
+    return HttpResponse(json.dumps(dic), content_type='application/json')
 
 def updatepwd(request):
 
@@ -84,4 +137,8 @@ def updatepwd(request):
 
 def edit(request):
 
+<<<<<<< HEAD
     return render(request, 'login/edit.html')
+=======
+
+>>>>>>> refs/remotes/origin/master
