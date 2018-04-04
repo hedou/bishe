@@ -116,3 +116,9 @@ def verifycode(request):
     conn.close()
 
     return HttpResponse(json.dumps(dic), content_type='application/json')
+
+def updatepwd(request):
+
+    return render(request, '')
+
+
