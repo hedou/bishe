@@ -1,34 +1,59 @@
 <html lang="zh-hans"><head>
 <title>修改 学生 | 研究生报名系统</title>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
-<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/forms.css">
+<link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
 
-
-<script type="text/javascript" src="/admin/jsi18n/"></script>
-<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
-<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
-<script type="text/javascript" src="/static/admin/js/core.js"></script>
-<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
-<script type="text/javascript" src="/static/admin/js/actions.js"></script>
-<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
-<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
-<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
-<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
-<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+<style type="text/css">
+:root #wrapper > div[style="padding:3px;"] > #pic,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle,
+:root .adsbox,
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/jquery.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+<script type="text/javascript" src="/static/admin/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/core.js"></script>
+<script type="text/javascript" src="/static/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/actions.js"></script>
+<script type="text/javascript" src="/static/admin/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/xregexp.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
 
 
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/responsive.css">
     
 
 <meta name="robots" content="NONE,NOARCHIVE">
-<style type="text/css">
-:root #content > #right > .dose > .dosesingle,
-:root #content > #center > .dose > .dosesingle,
-:root #header + #content > #left > #rlblock_left,
-:root #wrapper > div[style="padding:3px;"] > #pic,
-:root .adsbox
-{ display: none !important; }</style></head>
+<script type="text/javascript">
+    $(document).ready(function(){
+    $("#id_zhengjian_type").find("option[value='"+'{{xinxi.zhengjian_type}}'+"']").attr("selected","");
+    $("#id_xianyijunren").find("option[value='"+'{{xinxi.xianyijunren}}'+"']").attr("selected","");
+    $("#id_minzu").find("option[value='"+'{{xinxi.minzu}}'+"']").attr("selected","");
+    $("#id_sex").find("option[value='"+'{{xinxi.sex}}'+"']").attr("selected","");
+    $("#id_hunyin").find("option[value='"+'{{xinxi.hunyin}}'+"']").attr("selected","");
+    $("#id_zhengzhimianmao").find("option[value='"+'{{xinxi.zhengzhimianmao}}'+"']").attr("selected","");
+    $("#id_laiyuan").find("option[value='"+'{{xinxi.laiyuan}}'+"']").attr("selected","");
+    $("#id_graduation_school").find("option[value='"+'{{xinxi.graduation_school}}'+"']").attr("selected","");
+    $("#id_graduation_zhuanye").find("option[value='"+'{{xinxi.graduation_zhuanye}}'+"']").attr("selected","");
+    $("#id_baokao_type").find("option[value='"+'{{xinxi.baokao_type}}'+"']").attr("selected","");
+    $("#id_departmentsName").find("option[value='"+'{{xinxi.departmentsName}}'+"']").attr("selected","");
+    $("#id_professionalName").find("option[value='"+'{{xinxi.professionalName}}'+"']").attr("selected","");
+    $("#id_researchDirection").find("option[value='"+'{{xinxi.researchDirection}}'+"']").attr("selected","");
+    $("#id_examCourse").find("option[value='"+'{{xinxi.examCourse}}'+"']").attr("selected","");
+    $("#id_examProvince").find("option[value='"+'{{xinxi.examProvince}}'+"']").attr("selected","");
+    $("#id_examSchool").find("option[value='"+'{{xinxi.examSchool}}'+"']").attr("selected","");
+    });
+</script>
+</head>
 
 
 <body class=" app-bo model-student change-form" data-admin-utc-offset="0">
@@ -38,7 +63,7 @@
 
     
     <!-- Header -->
-    <!-- <div id="header">
+   <!--  <div id="header">
         <div id="branding">
         
 <h1 id="site-name"><a href="/admin/">研究生报名系统</a></h1>
@@ -71,12 +96,12 @@
     </div> -->
     <!-- END Header -->
     
-<div class="breadcrumbs">
+<!-- <div class="breadcrumbs">
 <a href="/admin/">首页</a>
 › <a href="/admin/bo/">Bo</a>
 › <a href="/admin/bo/student/">学生</a>
-› dsf
-</div>
+› 方科
+</div> -->
 
     
 
@@ -87,7 +112,7 @@
     <!-- Content -->
     <div id="content" class="colM">
         
-        <h1>修改 学生</h1>
+        <h1>修改 信息</h1>
         <div id="content-main">
 
 
@@ -95,14 +120,14 @@
     
     <li>
         
-        <a href="/admin/bo/student/1/history/" class="historylink">历史</a>
+        <!-- <a href="/admin/bo/student/1/history/" class="historylink">历史</a> -->
     </li>
     
     
   </ul>
 
 
-<form enctype="multipart/form-data" action="" method="post" id="student_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="hb0k0Q2749CQVIEcImPDindDl390IQTnlM7zw1hM17pFIuiHd54wbrs9NUsFBxu8">
+<form enctype="multipart/form-data" action="" method="post" id="student_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="g5cxPsOXj4tQiqU3c03KwX4QjiTabzAC5fugSJuIh5ctwkYtiGRq6kS33FVgJiEY">
 <div>
 
 
@@ -114,8 +139,7 @@
   <fieldset class="module aligned ">
     
     
-    
-        <div class="form-row field-name">
+        <div class="form-row field-name form-group">
             
             
                 <div>
@@ -123,7 +147,7 @@
                     
                         <label class="required" for="id_name">考生姓名:</label>
                         
-                            <input type="text" name="name" value="dsf" maxlength="100" class="vTextField" id="id_name" required="">
+                            <input type="text" name="name" value="{{xinxi.name}}" id="id_name" required="" maxlength="100" class="vTextField">
                         
                     
                     
@@ -131,7 +155,7 @@
             
         </div>
     
-        <div class="form-row field-name_pinyin">
+        <div class="form-row field-name_pinyin form-group">
             
             
                 <div>
@@ -139,7 +163,7 @@
                     
                         <label class="required" for="id_name_pinyin">姓名拼音:</label>
                         
-                            <input type="text" name="name_pinyin" value="adsf" maxlength="100" class="vTextField" id="id_name_pinyin" required="">
+                            <input type="text" name="name_pinyin" value="{{xinxi.name_pinyin}}" id="id_name_pinyin" required="" maxlength="100" class="vTextField">
                         
                     
                     
@@ -156,9 +180,12 @@
                         <label class="required" for="id_zhengjian_type">证件类型:</label>
                         
                             <select name="zhengjian_type" id="id_zhengjian_type">
-  <option value="0" selected="">请选择证件类型</option>
+                                <% String m = {{xinxi.zhengjian_type}}; %>
+  <option value="1" >居民户口簿</option>
 
-  <option value="1">第二代居民身份证</option>
+  <!-- <option value="0" >请选择证件类型</option> -->
+
+  <option value="0" >第二代居民身份证</option>
 
 </select>
                         
@@ -168,7 +195,7 @@
             
         </div>
     
-        <div class="form-row field-zhengjian_number">
+        <div class="form-row field-zhengjian_number form-group">
             
             
                 <div>
@@ -176,14 +203,30 @@
                     
                         <label class="required" for="id_zhengjian_number">证件号码:</label>
                         
-                            <input type="text" name="zhengjian_number" value="1" maxlength="300" class="vTextField" id="id_zhengjian_number" required="">
+                            <input type="text" name="zhengjian_number" value="{{xinxi.zhengjian_number}}" id="id_zhengjian_number" required="" maxlength="300" class="vTextField">
                         
                     
                     
                 </div>
             
         </div>
-    
+    <div class="form-row field-zhaopian form-group">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_zhaopian">个人近期照片:</label>
+                        
+                            <p class="file-upload">目前: <a href="#">{{xinxi.zhaopian}}</a><br>
+修改:
+<input type="file" name="zhaopian" id="id_zhaopian" value=""></p>
+                        
+                    
+                    
+                </div>
+            
+        </div>
         <div class="form-row field-xianyijunren">
             
             
@@ -193,9 +236,9 @@
                         <label class="required" for="id_xianyijunren">现役军人:</label>
                         
                             <select name="xianyijunren" id="id_xianyijunren">
-  <option value="1">否</option>
+  <option value="1">是</option>
 
-  <option value="0" selected="">是</option>
+  <option value="0">否</option>
 
 </select>
                         
@@ -216,7 +259,7 @@
                             <select name="minzu" id="id_minzu">
   <option value="1">少数民族</option>
 
-  <option value="0" selected="">汉族</option>
+  <option value="0">汉族</option>
 
 </select>
                         
@@ -237,7 +280,7 @@
                             <select name="sex" id="id_sex">
   <option value="1">女</option>
 
-  <option value="0" selected="">男</option>
+  <option value="0">男</option>
 
 </select>
                         
@@ -256,7 +299,7 @@
                         <label class="required" for="id_hunyin">婚姻状况:</label>
                         
                             <select name="hunyin" id="id_hunyin">
-  <option value="0" selected="">已婚</option>
+  <option value="0">已婚</option>
 
   <option value="1">未婚</option>
 
@@ -277,15 +320,15 @@
                         <label class="required" for="id_zhengzhimianmao">政治面貌:</label>
                         
                             <select name="zhengzhimianmao" id="id_zhengzhimianmao">
-  <option value="2">党员</option>
-
-  <option value="1">群众</option>
-
   <option value="4">无党派人士</option>
 
-  <option value="0" selected="">团员</option>
-
   <option value="3">预备党员</option>
+
+  <option value="2">党员</option>
+
+  <option value="0">团员</option>
+
+  <option value="1">群众</option>
 
 </select>
                         
@@ -295,7 +338,7 @@
             
         </div>
     
-        <div class="form-row field-address">
+        <div class="form-row field-address form-group">
             
             
                 <div>
@@ -303,7 +346,7 @@
                     
                         <label class="required" for="id_address">地址:</label>
                         
-                            <input type="text" name="address" value="1" maxlength="500" class="vTextField" id="id_address" required="">
+                            <input type="text" name="address" value="{{xinxi.address}}" id="id_address" required="" maxlength="500" class="vTextField">
                         
                     
                     
@@ -311,7 +354,7 @@
             
         </div>
     
-        <div class="form-row field-postcode">
+        <div class="form-row field-postcode form-group">
             
             
                 <div>
@@ -319,7 +362,7 @@
                     
                         <label class="required" for="id_postcode">邮政编码:</label>
                         
-                            <input type="text" name="postcode" value="1" maxlength="300" class="vTextField" id="id_postcode" required="">
+                            <input type="text" name="postcode" value="{{xinxi.postcode}}" id="id_postcode" required="" maxlength="300" class="vTextField">
                         
                     
                     
@@ -327,7 +370,7 @@
             
         </div>
     
-        <div class="form-row field-fixphone">
+        <div class="form-row field-fixphone form-group">
             
             
                 <div>
@@ -335,7 +378,7 @@
                     
                         <label class="required" for="id_fixphone">固定电话:</label>
                         
-                            <input type="text" name="fixphone" value="1" maxlength="300" class="vTextField" id="id_fixphone" required="">
+                            <input type="text" name="fixphone" value="{{xinxi.fixphone}}" id="id_fixphone" required="" maxlength="300" class="vTextField">
                         
                     
                     
@@ -343,7 +386,7 @@
             
         </div>
     
-        <div class="form-row field-telephone">
+        <div class="form-row field-telephone form-group">
             
             
                 <div>
@@ -351,7 +394,7 @@
                     
                         <label class="required" for="id_telephone">移动电话:</label>
                         
-                            <input type="text" name="telephone" value="11" maxlength="11" class="vTextField" id="id_telephone" required="">
+                            <input type="text" name="telephone" value="{{xinxi.telephone}}" id="id_telephone" required="" maxlength="11" class="vTextField">
                         
                     
                     
@@ -359,23 +402,7 @@
             
         </div>
     
-        <div class="form-row field-password">
-            
-            
-                <div>
-                    
-                    
-                        <label class="required" for="id_password">密码:</label>
-                        
-                            <input type="text" name="password" value="1" maxlength="30" class="vTextField" id="id_password" required="">
-                        
-                    
-                    
-                </div>
-            
-        </div>
-    
-        <div class="form-row field-email">
+        <div class="form-row field-email form-group">
             
             
                 <div>
@@ -383,7 +410,7 @@
                     
                         <label for="id_email">电子信箱:</label>
                         
-                            <input type="text" name="email" value="1" maxlength="30" class="vTextField" id="id_email">
+                            <input type="text" name="email" value="{{xinxi.email}}" id="id_email" maxlength="30" class="vTextField">
                         
                     
                     
@@ -400,7 +427,9 @@
                         <label class="required" for="id_laiyuan">考生来源:</label>
                         
                             <select name="laiyuan" id="id_laiyuan">
-  <option value="0" selected="">普通全日制应届本科毕业生</option>
+  <option value="1">普通全日制往届本科毕业生</option>
+
+  <option value="0">普通全日制应届本科毕业生</option>
 
 </select>
                         
@@ -419,7 +448,7 @@
                         <label class="required" for="id_graduation_type">取得最后学历的学习形式:</label>
                         
                             <select name="graduation_type" id="id_graduation_type">
-  <option value="0" selected="">普通全日制</option>
+  <option value="0">普通全日制</option>
 
 </select>
                         
@@ -428,8 +457,7 @@
                 </div>
             
         </div>
-    
-        <div class="form-row field-graduation_time">
+            <div class="form-row field-graduation_time form-group">
             
             
                 <div>
@@ -437,15 +465,15 @@
                     
                         <label class="required" for="id_graduation_time">获得最后学历的毕业年月:</label>
                         
-                            <input type="text" name="graduation_time" value="2018/04/02" class="vDateField" id="id_graduation_time" size="10" required=""><span class="datetimeshortcuts">&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#" id="calendarlink0"><span class="date-icon" title="选择一个日期"></span></a></span>
+                            <input type="text" name="graduation_time" value="{{xinxi.graduation_time | date:'Y-n-d'}}" size="10" required="" class="vDateField" id="id_graduation_time"><span class="datetimeshortcuts">&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#" id="calendarlink0"><span class="date-icon" title="选择一个日期"></span></a></span>
                         
                     
                     
-                <br><span class="timezonewarning">注意：你比服务器时间超前 8 个小时。</span></div>
+                <!-- <br><span class="timezonewarning">注意：你比服务器时间超前 8 个小时。</span> -->
+            </div>
             
         </div>
-    
-        <div class="form-row field-studentId">
+        <div class="form-row field-studentId form-group">
             
             
                 <div>
@@ -453,7 +481,7 @@
                     
                         <label class="required" for="id_studentId">注册学号:</label>
                         
-                            <input type="text" name="studentId" value="11" maxlength="300" class="vTextField" id="id_studentId" required="">
+                            <input type="text" name="studentId" value="{{xinxi.studentId}}" id="id_studentId" required="" maxlength="300" class="vTextField">
                         
                     
                     
@@ -470,7 +498,19 @@
                         <label class="required" for="id_graduation_school">毕业学校:</label>
                         
                             <select name="graduation_school" id="id_graduation_school">
-  <option value="0" selected="">上兰村帝国皇家学院</option>
+  <option value="3">太原理工大学</option>
+
+  <option value="5">山西师范大学</option>
+
+  <option value="0">中北大学</option>
+
+  <option value="6">太原大学</option>
+
+  <option value="1">山西财经大学</option>
+
+  <option value="2">山西大学</option>
+
+  <option value="4">太原工业大学</option>
 
 </select>
                         
@@ -489,7 +529,17 @@
                         <label class="required" for="id_graduation_zhuanye">毕业专业:</label>
                         
                             <select name="graduation_zhuanye" id="id_graduation_zhuanye">
-  <option value="0" selected="">应用物理</option>
+  <option value="2">网络工程</option>
+
+  <option value="4">物联网工程</option>
+
+  <option value="5">国际经济与贸易</option>
+
+  <option value="3">软件工程</option>
+
+  <option value="1">计算机科学与技术</option>
+
+  <option value="0">应用物理</option>
 
 </select>
                         
@@ -508,7 +558,9 @@
                         <label class="required" for="id_baokao_type">报考类别:</label>
                         
                             <select name="baokao_type" id="id_baokao_type">
-  <option value="0" selected="">非定向就业</option>
+  <option value="1">定向就业</option>
+
+  <option value="0">非定向就业</option>
 
 </select>
                         
@@ -518,7 +570,7 @@
             
         </div>
     
-        <div class="form-row field-nativePlace">
+        <div class="form-row field-nativePlace form-group">
             
             
                 <div>
@@ -526,7 +578,7 @@
                     
                         <label class="required" for="id_nativePlace">考生籍贯:</label>
                         
-                            <input type="text" name="nativePlace" value="1" maxlength="300" class="vTextField" id="id_nativePlace" required="">
+                            <input type="text" name="nativePlace" value="{{xinxi.nativePlace}}" id="id_nativePlace" required="" maxlength="300" class="vTextField">
                         
                     
                     
@@ -534,7 +586,7 @@
             
         </div>
     
-        <div class="form-row field-registerLocation">
+        <div class="form-row field-registerLocation form-group">
             
             
                 <div>
@@ -542,7 +594,7 @@
                     
                         <label class="required" for="id_registerLocation">户口所在地:</label>
                         
-                            <input type="text" name="registerLocation" value="11" maxlength="300" class="vTextField" id="id_registerLocation" required="">
+                            <input type="text" name="registerLocation" value="{{xinxi.registerLocation}}" id="id_registerLocation" required="" maxlength="300" class="vTextField">
                         
                     
                     
@@ -550,7 +602,7 @@
             
         </div>
     
-        <div class="form-row field-registerLocationDetail">
+        <div class="form-row field-registerLocationDetail form-group">
             
             
                 <div>
@@ -558,7 +610,7 @@
                     
                         <label class="required" for="id_registerLocationDetail">户口所在地详细地址:</label>
                         
-                            <input type="text" name="registerLocationDetail" value="1" maxlength="300" class="vTextField" id="id_registerLocationDetail" required="">
+                            <input type="text" name="registerLocationDetail" value="{{xinxi.registerLocationDetail}}" id="id_registerLocationDetail" required="" maxlength="300" class="vTextField">
                         
                     
                     
@@ -566,7 +618,7 @@
             
         </div>
     
-        <div class="form-row field-bornLocation">
+        <div class="form-row field-bornLocation form-group">
             
             
                 <div>
@@ -574,7 +626,7 @@
                     
                         <label class="required" for="id_bornLocation">出生地省市:</label>
                         
-                            <input type="text" name="bornLocation" value="1" maxlength="300" class="vTextField" id="id_bornLocation" required="">
+                            <input type="text" name="bornLocation" value="{{xinxi.bornLocation}}" id="id_bornLocation" required="" maxlength="300" class="vTextField">
                         
                     
                     
@@ -582,7 +634,7 @@
             
         </div>
     
-        <div class="form-row field-archivesLocation">
+        <div class="form-row field-archivesLocation form-group">
             
             
                 <div>
@@ -590,7 +642,7 @@
                     
                         <label class="required" for="id_archivesLocation">档案所在地:</label>
                         
-                            <input type="text" name="archivesLocation" value="1" maxlength="300" class="vTextField" id="id_archivesLocation" required="">
+                            <input type="text" name="archivesLocation" value="{{xinxi.archivesLocation}}" id="id_archivesLocation" required="" maxlength="300" class="vTextField">
                         
                     
                     
@@ -598,7 +650,7 @@
             
         </div>
     
-        <div class="form-row field-archivesLocationZip">
+        <div class="form-row field-archivesLocationZip form-group">
             
             
                 <div>
@@ -606,14 +658,43 @@
                     
                         <label class="required" for="id_archivesLocationZip">考生档案所在单位邮编:</label>
                         
-                            <input type="text" name="archivesLocationZip" value="11" maxlength="300" class="vTextField" id="id_archivesLocationZip" required="">
+                            <input type="text" name="archivesLocationZip" value="{{xinxi.archivesLocationZip}}" id="id_archivesLocationZip" required="" maxlength="300" class="vTextField">
                         
                     
                     
                 </div>
             
         </div>
-    
+         <div class="form-row field-baokao_school">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_baokao_school">报考学校名称:</label>
+                        
+                            <select name="baokao_school" id="id_baokao_school">
+  <option value="6">太原大学</option>
+
+  <option value="0" selected="">中北大学</option>
+
+  <option value="2">山西大学</option>
+
+  <option value="4">太原工业大学</option>
+
+  <option value="1">山西财经大学</option>
+
+  <option value="3">太原理工大学</option>
+
+  <option value="5">山西师范大学</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
         <div class="form-row field-departmentsName">
             
             
@@ -623,7 +704,25 @@
                         <label class="required" for="id_departmentsName">报考院系的名称:</label>
                         
                             <select name="departmentsName" id="id_departmentsName">
-  <option value="0" selected="">大数据学院</option>
+  <option value="0">大数据学院</option>
+
+  <option value="4">理学院</option>
+
+  <option value="5">艺术学院</option>
+
+  <option value="6">仪器与电子学院</option>
+
+  <option value="8">机械工程学院</option>
+
+  <option value="2">软件学院</option>
+
+  <option value="9">人文社会科学学院</option>
+
+  <option value="7">材料科学与工程学院</option>
+
+  <option value="3">经济与管理学院</option>
+
+  <option value="1">体育学院</option>
 
 </select>
                         
@@ -639,10 +738,20 @@
                 <div>
                     
                     
-                        <label class="required" for="id_professionalName">包括专业名称:</label>
+                        <label class="required" for="id_professionalName">报考专业名称:</label>
                         
                             <select name="professionalName" id="id_professionalName">
-  <option value="0" selected="">计算机科学与技术</option>
+  <option value="2">软件工程</option>
+
+  <option value="5">数据科学与大数据技术</option>
+
+  <option value="3">物联网工程</option>
+
+  <option value="0">计算机科学与技术</option>
+
+  <option value="1">网络工程</option>
+
+  <option value="4">数字媒体技术</option>
 
 </select>
                         
@@ -661,7 +770,13 @@
                         <label class="required" for="id_researchDirection">研究方向:</label>
                         
                             <select name="researchDirection" id="id_researchDirection">
-  <option value="0" selected="">人工智能</option>
+  <option value="1">虚拟仿真与可视化</option>
+
+  <option value="3">大数据与视觉计算</option>
+
+  <option value="2">大数据与网络安全</option>
+
+  <option value="0">人工智能</option>
 
 </select>
                         
@@ -680,7 +795,7 @@
                         <label class="required" for="id_examCourse">考试科目:</label>
                         
                             <select name="examCourse" id="id_examCourse">
-  <option value="0" selected="">高等数学</option>
+  <option value="0">政治 英语 专业课 数学</option>
 
 </select>
                         
@@ -699,7 +814,15 @@
                         <label class="required" for="id_examProvince">报考点所在省份:</label>
                         
                             <select name="examProvince" id="id_examProvince">
-  <option value="0" selected="">山西省</option>
+  <option value="4">河北省</option>
+
+  <option value="2">陕西省</option>
+
+  <option value="1">河南省</option>
+
+  <option value="0">山西省</option>
+
+  <option value="3">山东省</option>
 
 </select>
                         
@@ -718,7 +841,19 @@
                         <label class="required" for="id_examSchool">报考点:</label>
                         
                             <select name="examSchool" id="id_examSchool">
-  <option value="0" selected="">中北大学</option>
+  <option value="3">太原理工大学</option>
+
+  <option value="5">山西师范大学</option>
+
+  <option value="0">中北大学</option>
+
+  <option value="6">太原大学</option>
+
+  <option value="1">山西财经大学</option>
+
+  <option value="2">山西大学</option>
+
+  <option value="4">太原工业大学</option>
 
 </select>
                         
@@ -728,7 +863,7 @@
             
         </div>
     
-        <div class="form-row field-status">
+       <!--  <div class="form-row field-status">
             
             
                 <div>
@@ -737,9 +872,9 @@
                         <label class="required" for="id_status">状态:</label>
                         
                             <select name="status" id="id_status">
-  <option value="1">已删除</option>
-
   <option value="0" selected="">正常</option>
+
+  <option value="1">已删除</option>
 
 </select>
                         
@@ -747,8 +882,7 @@
                     
                 </div>
             
-        </div>
-    
+        </div> -->
 </fieldset>
 
 
@@ -764,14 +898,14 @@
 
 
 <div class="submit-row">
-<input type="submit" value="保存" class="default" name="_save">
+<input type="submit" value="保存" onclick="confirmSubmit(); class="default" name="_save">
 
     
-    <p class="deletelink-box"><a href="/admin/bo/student/1/delete/" class="deletelink">删除</a></p>
+   <!--  <p class="deletelink-box"><a href="/admin/bo/student/1/delete/" class="deletelink">删除</a></p>
 
 
 <input type="submit" value="保存并增加另一个" name="_addanother">
-<input type="submit" value="保存并继续编辑" name="_continue">
+<input type="submit" value="保存并继续编辑" name="_continue"> -->
 </div>
 
 
@@ -800,4 +934,197 @@
 
 
 
-<div class="calendarbox module" id="calendarbox0" style="display: none; position: absolute;"><div><a href="#" class="calendarnav-previous">&lt;</a><a href="#" class="calendarnav-next">&gt;</a></div><div id="calendarin0" class="calendar"><table><caption>四月 2018</caption><tbody><tr><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr><tr><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class=""><a href="#">1</a></td></tr><tr><td class="today"><a href="#">2</a></td><td class=""><a href="#">3</a></td><td class=""><a href="#">4</a></td><td class=""><a href="#">5</a></td><td class=""><a href="#">6</a></td><td class=""><a href="#">7</a></td><td class=""><a href="#">8</a></td></tr><tr><td class=""><a href="#">9</a></td><td class=""><a href="#">10</a></td><td class=""><a href="#">11</a></td><td class=""><a href="#">12</a></td><td class=""><a href="#">13</a></td><td class=""><a href="#">14</a></td><td class=""><a href="#">15</a></td></tr><tr><td class=""><a href="#">16</a></td><td class=""><a href="#">17</a></td><td class=""><a href="#">18</a></td><td class=""><a href="#">19</a></td><td class=""><a href="#">20</a></td><td class=""><a href="#">21</a></td><td class=""><a href="#">22</a></td></tr><tr><td class=""><a href="#">23</a></td><td class=""><a href="#">24</a></td><td class=""><a href="#">25</a></td><td class=""><a href="#">26</a></td><td class=""><a href="#">27</a></td><td class=""><a href="#">28</a></td><td class=""><a href="#">29</a></td></tr><tr><td class=""><a href="#">30</a></td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td></tr></tbody></table></div><div class="calendar-shortcuts"><a href="#">昨天</a>&nbsp;|&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#">明天</a></div><p class="calendar-cancel"><a href="#">取消</a></p></div></body></html>
+</body>
+<script type="text/javascript">
+     function confirmSubmit(){
+            if(confirm('信息已核实无误')){
+                return true;
+            }
+            return false;
+        }
+        
+    //初始化input状态样式图标
+    var icon = {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+    };
+    //初始化验证规则
+    $("#student_form").bootstrapValidator({
+        feedbackIcons: icon,   //加载图标
+        /* 生效规则
+         * enabled:字段值发生变化就触发验证
+         * disabled/submitted:点击提交时触发验证
+         */
+        live: 'disabled', 
+        //表单域配置
+        fields: {
+            name: {//username为input标签name值
+                validators: {
+                    notEmpty: {message: '请输入用户名'},    //非空提示
+                    stringLength: {    //长度限制
+                          max: 50,
+                          message: '用户名长度不能超过50'
+                    }
+                
+                  
+                }
+            },
+            name_pinyin: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'姓名拼音不能为空'
+                    },
+                    stringLength: {
+                        max: 50,
+                        message: '长度不能大于50位'
+                    }
+                }
+            },
+            zhengjian_number: {
+                validators: {
+                    notEmpty: {message: '请输入证件号码'}
+                    // creditCard: {message: '请输入正确的证件号码'}
+                }
+            },   //最后一个没有逗号
+            // zhaopian: {
+            //     message:'',
+            //     validators:{
+            //         notEmpty:{
+            //             message:'照片不能为空'
+            //         }
+            //     }
+            // },
+            address: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'地址不能为空'
+                    },
+                    stringLength: {
+                        max: 150,
+                        message: '长度不能大于150位'
+                    }
+                }
+            },
+            postcode: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'邮政编码不能为空'
+                    },
+                    stringLength: {
+                        max: 10,
+                        message: '长度不能大于10位'
+                    }
+                }
+            },
+            fixphone: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'固定电话不能为空'
+                    },
+                    stringLength: {
+                        max: 7,
+                        message: '长度不能大于7位'
+                    }
+                }
+            },
+            telephone: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'移动电话不能为空'
+                    },
+                    stringLength: {
+                        max: 11,
+                        message: '长度不能大于11位'
+                    }
+                }
+            },
+            email: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'电子邮箱不能为空'
+                    },
+                    emailAddress: {
+                        message: '  请输入正确的邮箱地址'
+                    }
+                }
+            },
+            graduation_time: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'毕业时间不能为空'
+                    }
+                    
+                }
+            },
+            studentId: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'注册学号不能为空'
+                    },
+                    number: {
+                        message: '请输入数字'
+                    }
+                }
+            },
+            nativePlace: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'籍贯不能为空'
+                    }
+                }
+            },
+            registerLocation: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'户口所在地不能为空'
+                    }                }
+            },
+            registerLocationDetail: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'详细地址不能为空'
+                    }                }
+            },
+            bornLocation: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'出生地省市不能为空'
+                    }                }
+            },
+            archivesLocation: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'档案所在地不能为空'
+                    }                }
+            },
+            archivesLocationZip: {
+                message:'',
+                validators:{
+                    notEmpty:{
+                        message:'档案所在单位邮编不能为空'
+                    },
+                    stringLength: {
+                        max: 10,
+                        message: '长度不能大于10位'
+                    }                }
+            }
+
+        }
+    })
+
+</script>
+</html>

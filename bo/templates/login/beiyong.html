@@ -1,0 +1,905 @@
+<html lang="zh-hans">
+<head>
+
+<title>增加 学生 | 研究生报名系统</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script><style type="text/css">
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle,
+:root #wrapper > div[style="padding:3px;"] > #pic
+{ display: none !important; }</style>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+<style type="text/css">
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style>
+
+</head>
+
+
+<body class=" app-bo model-student change-form" data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+            <h1 id="site-name"><a href="/admin/">研究生报名系统</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                欢迎，
+                <strong>admin</strong>.
+            
+            
+                
+                    <a href="/">查看站点</a> /
+                
+                
+                    
+                    
+                
+                
+                <a href="/admin/password_change/">修改密码</a> /
+                
+                <a href="/admin/logout/">注销</a>
+            
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="/admin/">首页</a>
+› <a href="/admin/bo/">Bo</a>
+› <a href="/admin/bo/student/">学生</a>
+› 增加 学生
+</div>
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>增加 学生</h1>
+        <div id="content-main">
+
+
+
+<form enctype="multipart/form-data" action="" method="post" id="student_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="ZroRtelqPi9KyuuQync69ESbNweJsm8sOBGAwv1bNjSnMoygE30MJ1GoxTgP05cO">
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+    
+    
+    
+        <div class="form-row field-name">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_name">考生姓名:</label>
+                        
+                            <input type="text" name="name" required="" class="vTextField" maxlength="100" id="id_name">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-name_pinyin">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_name_pinyin">姓名拼音:</label>
+                        
+                            <input type="text" name="name_pinyin" required="" class="vTextField" maxlength="100" id="id_name_pinyin">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-zhengjian_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_zhengjian_type">证件类型:</label>
+                        
+                            <select name="zhengjian_type" id="id_zhengjian_type">
+  <option value="1">居民户口簿</option>
+
+  <option value="0" selected="">第二代居民身份证</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-zhengjian_number">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_zhengjian_number">证件号码:</label>
+                        
+                            <input type="text" name="zhengjian_number" required="" class="vTextField" maxlength="300" id="id_zhengjian_number">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-zhaopian">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_zhaopian">个人近期照片:</label>
+                        
+                            <input type="file" name="zhaopian" required="" id="id_zhaopian">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-xianyijunren">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_xianyijunren">现役军人:</label>
+                        
+                            <select name="xianyijunren" id="id_xianyijunren">
+  <option value="0" selected="">否</option>
+
+  <option value="1">是</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-minzu">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_minzu">考生民族:</label>
+                        
+                            <select name="minzu" id="id_minzu">
+  <option value="0" selected="">汉族</option>
+
+  <option value="1">少数民族</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-sex">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_sex">考生性别:</label>
+                        
+                            <select name="sex" id="id_sex">
+  <option value="0" selected="">男</option>
+
+  <option value="1">女</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-hunyin">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_hunyin">婚姻状况:</label>
+                        
+                            <select name="hunyin" id="id_hunyin">
+  <option value="1">未婚</option>
+
+  <option value="0" selected="">已婚</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-zhengzhimianmao">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_zhengzhimianmao">政治面貌:</label>
+                        
+                            <select name="zhengzhimianmao" id="id_zhengzhimianmao">
+  <option value="1">群众</option>
+
+  <option value="2">党员</option>
+
+  <option value="3">预备党员</option>
+
+  <option value="0" selected="">团员</option>
+
+  <option value="4">无党派人士</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-address">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_address">地址:</label>
+                        
+                            <input type="text" name="address" required="" class="vTextField" maxlength="500" id="id_address">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-postcode">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_postcode">邮政编码:</label>
+                        
+                            <input type="text" name="postcode" required="" class="vTextField" maxlength="300" id="id_postcode">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-fixphone">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_fixphone">固定电话:</label>
+                        
+                            <input type="text" name="fixphone" required="" class="vTextField" maxlength="300" id="id_fixphone">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-telephone">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_telephone">移动电话:</label>
+                        
+                            <input type="text" name="telephone" required="" class="vTextField" maxlength="11" id="id_telephone">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-email">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_email">电子信箱:</label>
+                        
+                            <input type="text" name="email" class="vTextField" maxlength="30" id="id_email">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-laiyuan">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_laiyuan">考生来源:</label>
+                        
+                            <select name="laiyuan" id="id_laiyuan">
+  <option value="0" selected="">普通全日制应届本科毕业生</option>
+
+  <option value="1">普通全日制往届本科毕业生</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-graduation_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_graduation_type">取得最后学历的学习形式:</label>
+                        
+                            <select name="graduation_type" id="id_graduation_type">
+  <option value="0" selected="">普通全日制</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-graduation_time">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_graduation_time">获得最后学历的毕业年月:</label>
+                        
+                            <input type="text" name="graduation_time" size="10" class="vDateField" required="" id="id_graduation_time"><span class="datetimeshortcuts">&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#" id="calendarlink0"><span class="date-icon" title="选择一个日期"></span></a></span>
+                        
+                    
+                    
+                <br><span class="timezonewarning">注意：你比服务器时间超前 8 个小时。</span></div>
+            
+        </div>
+    
+        <div class="form-row field-studentId">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_studentId">注册学号:</label>
+                        
+                            <input type="text" name="studentId" required="" class="vTextField" maxlength="300" id="id_studentId">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-graduation_school">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_graduation_school">毕业学校:</label>
+                        
+                            <select name="graduation_school" id="id_graduation_school">
+  <option value="6">太原大学</option>
+
+  <option value="0" selected="">中北大学</option>
+
+  <option value="2">山西大学</option>
+
+  <option value="4">太原工业大学</option>
+
+  <option value="1">山西财经大学</option>
+
+  <option value="3">太原理工大学</option>
+
+  <option value="5">山西师范大学</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-graduation_zhuanye">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_graduation_zhuanye">毕业专业:</label>
+                        
+                            <select name="graduation_zhuanye" id="id_graduation_zhuanye">
+  <option value="0" selected="">应用物理</option>
+
+  <option value="2">网络工程</option>
+
+  <option value="4">物联网工程</option>
+
+  <option value="3">软件工程</option>
+
+  <option value="1">计算机科学与技术</option>
+
+  <option value="5">国际经济与贸易</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-baokao_type">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_baokao_type">报考类别:</label>
+                        
+                            <select name="baokao_type" id="id_baokao_type">
+  <option value="0" selected="">非定向就业</option>
+
+  <option value="1">定向就业</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-nativePlace">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_nativePlace">考生籍贯:</label>
+                        
+                            <input type="text" name="nativePlace" required="" class="vTextField" maxlength="300" id="id_nativePlace">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-registerLocation">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_registerLocation">户口所在地:</label>
+                        
+                            <input type="text" name="registerLocation" required="" class="vTextField" maxlength="300" id="id_registerLocation">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-registerLocationDetail">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_registerLocationDetail">户口所在地详细地址:</label>
+                        
+                            <input type="text" name="registerLocationDetail" required="" class="vTextField" maxlength="300" id="id_registerLocationDetail">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-bornLocation">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_bornLocation">出生地省市:</label>
+                        
+                            <input type="text" name="bornLocation" required="" class="vTextField" maxlength="300" id="id_bornLocation">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-archivesLocation">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_archivesLocation">档案所在地:</label>
+                        
+                            <input type="text" name="archivesLocation" required="" class="vTextField" maxlength="300" id="id_archivesLocation">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-archivesLocationZip">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_archivesLocationZip">考生档案所在单位邮编:</label>
+                        
+                            <input type="text" name="archivesLocationZip" required="" class="vTextField" maxlength="300" id="id_archivesLocationZip">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-baokao_school">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_baokao_school">报考学校名称:</label>
+                        
+                            <select name="baokao_school" id="id_baokao_school">
+  <option value="6">太原大学</option>
+
+  <option value="0" selected="">中北大学</option>
+
+  <option value="2">山西大学</option>
+
+  <option value="4">太原工业大学</option>
+
+  <option value="1">山西财经大学</option>
+
+  <option value="3">太原理工大学</option>
+
+  <option value="5">山西师范大学</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-departmentsName">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_departmentsName">报考院系的名称:</label>
+                        
+                            <select name="departmentsName" id="id_departmentsName">
+  <option value="8">机械工程学院</option>
+
+  <option value="6">仪器与电子学院</option>
+
+  <option value="9">人文社会科学学院</option>
+
+  <option value="5">艺术学院</option>
+
+  <option value="4">理学院</option>
+
+  <option value="3">经济与管理学院</option>
+
+  <option value="0" selected="">大数据学院</option>
+
+  <option value="1">体育学院</option>
+
+  <option value="7">材料科学与工程学院</option>
+
+  <option value="2">软件学院</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-professionalName">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_professionalName">报考专业名称:</label>
+                        
+                            <select name="professionalName" id="id_professionalName">
+  <option value="4">数字媒体技术</option>
+
+  <option value="2">软件工程</option>
+
+  <option value="5">数据科学与大数据技术</option>
+
+  <option value="1">网络工程</option>
+
+  <option value="3">物联网工程</option>
+
+  <option value="0" selected="">计算机科学与技术</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-researchDirection">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_researchDirection">研究方向:</label>
+                        
+                            <select name="researchDirection" id="id_researchDirection">
+  <option value="3">大数据与视觉计算</option>
+
+  <option value="2">大数据与网络安全</option>
+
+  <option value="0" selected="">人工智能</option>
+
+  <option value="1">虚拟仿真与可视化</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-examCourse">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_examCourse">考试科目:</label>
+                        
+                            <select name="examCourse" id="id_examCourse">
+  <option value="0" selected="">政治 英语 专业课 数学</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-examProvince">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_examProvince">报考点所在省份:</label>
+                        
+                            <select name="examProvince" id="id_examProvince">
+  <option value="1">河南省</option>
+
+  <option value="2">陕西省</option>
+
+  <option value="3">山东省</option>
+
+  <option value="4">河北省</option>
+
+  <option value="0" selected="">山西省</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-examSchool">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_examSchool">报考点:</label>
+                        
+                            <select name="examSchool" id="id_examSchool">
+  <option value="6">太原大学</option>
+
+  <option value="0" selected="">中北大学</option>
+
+  <option value="2">山西大学</option>
+
+  <option value="4">太原工业大学</option>
+
+  <option value="1">山西财经大学</option>
+
+  <option value="3">太原理工大学</option>
+
+  <option value="5">山西师范大学</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-status">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_status">状态:</label>
+                        
+                            <select name="status" id="id_status">
+  <option value="1">已删除</option>
+
+  <option value="0" selected="">正常</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+<input type="submit" value="保存" class="default" name="_save">
+
+
+<input type="submit" value="保存并增加另一个" name="_addanother">
+<input type="submit" value="保存并继续编辑" name="_continue">
+</div>
+
+
+
+    <script type="text/javascript" id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" data-model-name="student">
+    </script>
+
+
+
+
+<script type="text/javascript" id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+
+
+<div class="calendarbox module" id="calendarbox0" style="display: none; position: absolute;"><div><a href="#" class="calendarnav-previous">&lt;</a><a href="#" class="calendarnav-next">&gt;</a></div><div id="calendarin0" class="calendar"><table><caption>四月 2018</caption><tbody><tr><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr><tr><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class=""><a href="#">1</a></td></tr><tr><td class=""><a href="#">2</a></td><td class=""><a href="#">3</a></td><td class=""><a href="#">4</a></td><td class=""><a href="#">5</a></td><td class=""><a href="#">6</a></td><td class=""><a href="#">7</a></td><td class=""><a href="#">8</a></td></tr><tr><td class=""><a href="#">9</a></td><td class=""><a href="#">10</a></td><td class=""><a href="#">11</a></td><td class="today"><a href="#">12</a></td><td class=""><a href="#">13</a></td><td class=""><a href="#">14</a></td><td class=""><a href="#">15</a></td></tr><tr><td class=""><a href="#">16</a></td><td class=""><a href="#">17</a></td><td class=""><a href="#">18</a></td><td class=""><a href="#">19</a></td><td class=""><a href="#">20</a></td><td class=""><a href="#">21</a></td><td class=""><a href="#">22</a></td></tr><tr><td class=""><a href="#">23</a></td><td class=""><a href="#">24</a></td><td class=""><a href="#">25</a></td><td class=""><a href="#">26</a></td><td class=""><a href="#">27</a></td><td class=""><a href="#">28</a></td><td class=""><a href="#">29</a></td></tr><tr><td class=""><a href="#">30</a></td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td></tr></tbody></table></div><div class="calendar-shortcuts"><a href="#">昨天</a>&nbsp;|&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#">明天</a></div><p class="calendar-cancel"><a href="#">取消</a></p></div></body></html>

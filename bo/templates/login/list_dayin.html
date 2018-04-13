@@ -1,0 +1,307 @@
+<html lang="zh-hans">
+<head>
+<title>查看 学生 | 研究生报名系统</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+<style type="text/css">
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle,
+:root #header + #content > #left > #rlblock_left,
+:root #wrapper > div[style="padding:3px;"] > #pic,
+:root .adsbox
+{ display: none !important; }</style>
+
+<script language=javascript>
+function doPrint() { 
+bdhtml=window.document.body.innerHTML; 
+sprnstr="<!--startprint-->"; //开始打印标识字符串有17个字符
+eprnstr="<!--endprint-->"; //结束打印标识字符串
+prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17); //从开始打印标识之后的内容
+prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr)); //截取开始标识和结束标识之间的内容
+window.document.body.innerHTML=prnhtml; //把需要打印的指定内容赋给body.innerHTML
+window.print(); //调用浏览器的打印功能打印指定区域
+window.document.body.innerHTML=bdhtml;//重新给页面内容赋值； 
+}
+</script>
+</head>
+
+
+<body class=" app-bo model-student change-form" data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <!-- <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/admin/">研究生报名系统</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                欢迎，
+                <strong>admin</strong>.
+            
+            
+                
+                    <a href="/">查看站点</a> /
+                
+                
+                    
+                    
+                
+                
+                <a href="/admin/password_change/">修改密码</a> /
+                
+                <a href="/admin/logout/">注销</a>
+            
+        </div>
+        
+        
+        
+    </div> -->
+    <!-- END Header -->
+    
+<!-- <div class="breadcrumbs">
+<a href="/admin/">首页</a>
+› <a href="/admin/bo/">Bo</a>
+› <a href="/admin/bo/student/">学生</a>
+› dsf
+</div> -->
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>查看 信息</h1>
+        <div id="content-main">
+
+
+ <!--  <ul class="object-tools">
+    
+    <li>
+        
+        <a href="/admin/bo/student/1/history/" class="historylink">历史</a>
+    </li>
+    
+    
+  </ul> -->
+
+ 
+<form enctype="multipart/form-data" action="" method="post" id="student_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="hb0k0Q2749CQVIEcImPDindDl390IQTnlM7zw1hM17pFIuiHd54wbrs9NUsFBxu8">
+<div>
+
+
+
+
+
+
+
+<fieldset class="module aligned ">
+    
+    {% for xinxi in xinxi_list %}
+    <!--startprint-->
+    <table border="1px solid black;" style="width: 100%;">
+
+        <tr>
+            <td>考生姓名</td>
+            <td>{{xinxi.name}}</td>
+            <td rowspan="3" style="text-align: center;vertical-align: middle;">个人照片</td>
+            <td rowspan="3" ><img style="max-width: 100px;max-height: 100px;text-align: center;vertical-align: middle;" src="{{xinxi.zhaopian.url}}"></td>
+        </tr>
+        <tr>
+            <td>姓名拼音</td>
+            <td>{{xinxi.name_pinyin}}</td>
+        </tr>
+        <tr>
+            <td>证件类型</td>
+            <td>{{xinxi.get_zhengjian_type_display}}</td>
+        </tr>
+        <tr>
+            
+            <td>证件号码</td>
+            <td colspan="3">{{xinxi.zhengjian_number}}</td>
+        </tr>
+        <tr>
+            <td>现役军人</td>
+            <td>{{xinxi.get_xianyijunren_display}}</td>
+            <td>考生民族</td>
+            <td>{{xinxi.get_minzu_display}}</td>
+        </tr>
+        <tr>
+            <td>考生性别</td>
+            <td>{{xinxi.get_sex_display}}</td>
+            <td>婚姻状况</td>
+            <td>{{xinxi.get_hunyin_display}}</td>
+        </tr>
+        <tr>
+            <td>政治面貌</td>
+            <td>{{xinxi.get_zhengzhimianmao_display}}</td>
+            <td>邮政编码</td>
+            <td>{{xinxi.postcode}}</td>
+        </tr>
+        <tr>
+            <td>地址</td>
+            <td colspan="3">{{xinxi.address}}</td>
+        </tr>
+        <tr>
+            <td>固定电话</td>
+            <td>{{xinxi.fixphone}}</td>
+            <td>移动电话</td>
+            <td>{{xinxi.telephone}}</td>
+        </tr>
+        <tr>
+            <td>电子信箱</td>
+            <td colspan="3">{{xinxi.email}}</td>
+        </tr>
+        <tr>
+            <td>考生来源</td>
+            <td>{{xinxi.get_laiyuan_display}}</td>
+            <td>取得最后学历的学习形式</td>
+            <td>{{xinxi.get_graduation_type_display}}</td>
+        </tr>
+        <tr>
+            <td>获得最后学历的毕业年月</td>
+            <td>{{xinxi.graduation_time}}</td>
+            <td>注册学号</td>
+            <td>{{xinxi.studentId}}</td>
+        </tr>
+        <tr>
+            <td>毕业学校</td>
+            <td>{{xinxi.get_graduation_school_display}}</td>
+            <td>毕业专业</td>
+            <td>{{xinxi.get_graduation_zhuanye_display}}</td>
+        </tr>
+        <tr>
+            <td>报考类别</td>
+            <td colspan="3">{{xinxi.get_baokao_type_display}}</td>
+        </tr>
+        <tr>
+            <td>考生籍贯</td>
+            <td colspan="3">{{xinxi.nativePlace}}</td>
+        </tr>
+        <tr>
+            <td>户口所在地</td>
+            <td colspan="3">{{xinxi.registerLocation}}</td>
+        </tr>
+        <tr>
+            <td>户口所在地详细地址</td>
+            <td colspan="3">{{xinxi.registerLocationDetail}}</td>
+        </tr>
+        <tr>
+            <td>出生地省市</td>
+            <td colspan="3">{{xinxi.bornLocation}}</td>
+        </tr>
+        <tr>
+            <td>档案所在地</td>
+            <td colspan="3">{{xinxi.archivesLocation}}</td>
+        </tr>
+        <tr>
+            <td>考生档案所在单位邮编</td>
+            <td>{{xinxi.archivesLocationZip}}</td>
+            <td>报考院系的名称</td>
+            <td>{{xinxi.get_departmentsName_display}}</td>
+        </tr>
+        <tr>
+            <td>报考专业名称</td>
+            <td>{{xinxi.get_professionalName_display}}</td>
+            <td>研究方向</td>
+            <td>{{xinxi.get_researchDirection_display}}</td>
+        </tr>
+        <tr>
+            <td>考试科目</td>
+            <td colspan="3">{{xinxi.get_examCourse_display}}</td>
+        </tr>
+        <tr>
+            <td>报考点所在省份</td>
+            <td>{{xinxi.get_examProvince_display}}</td>
+            <td>报考点</td>
+            <td>{{xinxi.get_examSchool_display}}</td>
+        </tr>
+
+    </table>
+    <!--endprint-->
+{% endfor %} 
+    
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+<input type="button" value="打印" class="default" onclick="doPrint();" id="dayin"  name="_save">
+
+    
+    <!-- <p class="deletelink-box"><a href="/admin/bo/student/1/delete/" class="deletelink">删除</a></p> -->
+
+
+<!-- <input type="submit" value="保存并增加另一个" name="_addanother"> -->
+<!-- <input type="submit" value="保存并继续编辑" name="_continue"> -->
+</div>
+
+
+    <script type="text/javascript" id="django-admin-form-add-constants" src="/static/admin/js/change_form.js">
+    </script>
+
+
+
+
+<script type="text/javascript" id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form>
+</div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+
+
+<div class="calendarbox module" id="calendarbox0" style="display: none; position: absolute;"><div><a href="#" class="calendarnav-previous">&lt;</a><a href="#" class="calendarnav-next">&gt;</a></div><div id="calendarin0" class="calendar"><table><caption>四月 2018</caption><tbody><tr><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr><tr><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class=""><a href="#">1</a></td></tr><tr><td class="today"><a href="#">2</a></td><td class=""><a href="#">3</a></td><td class=""><a href="#">4</a></td><td class=""><a href="#">5</a></td><td class=""><a href="#">6</a></td><td class=""><a href="#">7</a></td><td class=""><a href="#">8</a></td></tr><tr><td class=""><a href="#">9</a></td><td class=""><a href="#">10</a></td><td class=""><a href="#">11</a></td><td class=""><a href="#">12</a></td><td class=""><a href="#">13</a></td><td class=""><a href="#">14</a></td><td class=""><a href="#">15</a></td></tr><tr><td class=""><a href="#">16</a></td><td class=""><a href="#">17</a></td><td class=""><a href="#">18</a></td><td class=""><a href="#">19</a></td><td class=""><a href="#">20</a></td><td class=""><a href="#">21</a></td><td class=""><a href="#">22</a></td></tr><tr><td class=""><a href="#">23</a></td><td class=""><a href="#">24</a></td><td class=""><a href="#">25</a></td><td class=""><a href="#">26</a></td><td class=""><a href="#">27</a></td><td class=""><a href="#">28</a></td><td class=""><a href="#">29</a></td></tr><tr><td class=""><a href="#">30</a></td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td></tr></tbody></table></div><div class="calendar-shortcuts"><a href="#">昨天</a>&nbsp;|&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#">明天</a></div><p class="calendar-cancel"><a href="#">取消</a></p></div></body></html>

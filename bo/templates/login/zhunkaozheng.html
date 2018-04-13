@@ -1,0 +1,305 @@
+<html lang="zh-hans">
+<head>
+<title>查看 学生 | 研究生报名系统</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+<style type="text/css">
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle,
+:root #header + #content > #left > #rlblock_left,
+:root #wrapper > div[style="padding:3px;"] > #pic,
+:root .adsbox
+{ display: none !important; }</style>
+
+<script language=javascript>
+function doPrint() { 
+bdhtml=window.document.body.innerHTML; 
+sprnstr="<!--startprint-->"; //开始打印标识字符串有17个字符
+eprnstr="<!--endprint-->"; //结束打印标识字符串
+prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17); //从开始打印标识之后的内容
+prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr)); //截取开始标识和结束标识之间的内容
+window.document.body.innerHTML=prnhtml; //把需要打印的指定内容赋给body.innerHTML
+window.print(); //调用浏览器的打印功能打印指定区域
+window.document.body.innerHTML=bdhtml;//重新给页面内容赋值； 
+}
+</script>
+</head>
+
+
+<body class=" app-bo model-student change-form" data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <!-- <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/admin/">研究生报名系统</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                欢迎，
+                <strong>admin</strong>.
+            
+            
+                
+                    <a href="/">查看站点</a> /
+                
+                
+                    
+                    
+                
+                
+                <a href="/admin/password_change/">修改密码</a> /
+                
+                <a href="/admin/logout/">注销</a>
+            
+        </div>
+        
+        
+        
+    </div> -->
+    <!-- END Header -->
+    
+<!-- <div class="breadcrumbs">
+<a href="/admin/">首页</a>
+› <a href="/admin/bo/">Bo</a>
+› <a href="/admin/bo/student/">学生</a>
+› dsf
+</div> -->
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM" style="text-align: center;">
+        
+        <h1>2018年全国硕士研究生招生考试准考证</h1>
+        <div id="content-main">
+
+
+ <!--  <ul class="object-tools">
+    
+    <li>
+        
+        <a href="/admin/bo/student/1/history/" class="historylink">历史</a>
+    </li>
+    
+    
+  </ul> -->
+
+ 
+<form enctype="multipart/form-data" action="" method="post" id="student_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="hb0k0Q2749CQVIEcImPDindDl390IQTnlM7zw1hM17pFIuiHd54wbrs9NUsFBxu8">
+<div>
+
+
+
+
+
+
+
+<fieldset class="module aligned ">
+    
+    {% for xinxi in xinxi_list %}
+    <!--startprint-->
+    <table border="1px solid black;" style="width: 100%;">
+
+        <tr>
+            <td style="text-align: center;">考生姓名</td>
+            <td colspan="3">{{xinxi.name}}</td>
+            <td rowspan="3" style="height: 20%;width: 20%;"><img style="max-width: 100px;max-height: 100px;text-align: center;vertical-align: middle;" src="{{xinxi.zhaopian.url}}"></td>
+        </tr>
+
+        <tr>
+            <td style="text-align: center;">证件类型</td>
+            <td>{{xinxi.get_zhengjian_type_display}}</td>
+            <td style="width: 15%; text-align: center;" >考生性别</td>
+            <td style="width: 15%;">{{xinxi.get_sex_display}}</td>
+        </tr>
+        <tr>
+            
+            <td style="text-align: center;">证件号码</td>
+            <td colspan="3">{{xinxi.zhengjian_number}}</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">学习工作单位</td>
+        	<td colspan="4">{{xinxi.get_graduation_school_display}}</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">报考单位(代码)</td>
+        	<td colspan="4">{{xinxi.get_baokao_school_display}}</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">报考专业(代码)</td>
+        	<td colspan="4">{{xinxi.get_departmentsName_display}}</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">考试时间</td>
+        	<td colspan="2" style="width: 40%;text-align: center;">上午&nbsp;08:30-11:30</td>
+        	<td colspan="2" style="width: 40%;text-align: center;">下午&nbsp;14:00-17:00</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">12月23日</td>
+        	<td colspan="2" style="width: 40%;">思想政治理论(101)</td>
+        	<td colspan="2" style="width: 40%;">英语一(201)</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">12月24日</td>
+        	<td colspan="2">数学一(301)</td>
+        	<td colspan="2">电路,信息与系统(821)</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">12月25日</td>
+        	<td colspan="4">无</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">报考点名称(代码)</td>
+        	<td colspan="4">{{xinxi.get_examSchool_display}}</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;">考试地点</td>
+        	<td colspan="4">第一考场&nbsp;南(新)校区A栋201教室</td>
+        </tr>
+        <tr>
+        	<td colspan="5" style="text-align: center;">报考点说明</td>
+        </tr>
+        <tr>
+        	<td colspan="5">
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        					1、本考点接收山西省内任意高校应届毕业生（提供身份证、学生证）。<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							2、本考点接收户籍为山西省的考生（提供身份证、毕业证）。<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							3、本考点接收我校历届毕业生。<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							4、有超过3小时考试科目的不得选择本考点。<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							5、有特殊要求的考生建议不要选择本考点，以免考点不能满足你的需要。残疾人士除外。<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							6、其他说明见教育部及省考试院公告。<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							7、现场确认相关要求可参考去年公告。现场确认的具体时间安排见后续公告。
+			</td>
+        </tr>
+        <tr>
+        	<td style="text-align: center;" colspan="5">招生单位说明</td>
+        </tr>
+        <tr>
+        	<td colspan="5">
+        		1.2018年网上阅卷,主观题答案须用0.5mm黑色签字笔答题，且答在题目规定的答题区域内,用笔及答题区域不规范者后果自负。<br>
+        		2.我校自命题科目请携带无记忆编程翻译功能的计算器，以及直尺、圆规、量角器等绘图工具。<br>
+        		3.请务必密切关注我校研招网 (grs.hdu.edu.cn)考前相关通知!
+        	</td>
+        </tr>
+    </table>
+        <div style="page-break-after:always"></div>
+        <table border="1px solid black;" style="width: 100%;">
+        <tr>
+        	<td colspan="5" style="text-align: center;">考生须知</td>
+        </tr>
+        <tr>
+        	<td colspan="5">
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;各位考生:<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;硕士研究生招生考试，是国家选育人才一项重要制度。充分做好各项考前准备、了解各项考试规定、诚信考试、避免考试违规行为，是大家必须关注的内容。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考前熟悉考点和考场位置、避免迟到，是顺利考试的首要问题，请考生提前上网查询。按照考试规定：考生迟到15分钟不得进入考点参加当科考试。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考生除携带2B铅笔、0.5毫米及以上书写黑色字迹的签字笔及必需的文具用品外，切勿携带具有发送或者接受信息功能的设备参加考试。考试期间，各考点将启用无线信号监测车、“作弊克”等无线电监控设备监测非法无线电讯号，并启用金属探测仪、身份证识别仪检查违规物品、查验身份证件，所有考场也将全面启用视频监控录像系统，对考试过程进行全程录像。谨请全体考生诚信应考，避免考试违规行为。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考生进入考场前，请仔细检查有无携带与考试无关用品，《准考证》正、反两面在使用期间均不得涂改或书写。违规物品一经带入，不论有意、无意，都将作违规处理。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考生进入考场，必须根据《考试指令》要求进行考试。答题前，应认真阅读答题纸上的答题说明，并按答题说明要求答题。在答题纸规定区域外的答题内容均视为无效。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考试期间各位考生要遵守考场纪律，考场内必须保持安静。各科目开考15分钟后不准入场，考试结束前三十分钟后方可交卷离场。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考生不得以任何形式将试题内容传出考场，也不得以任何形式接受来自外部的有关试题信息。考试结束后试卷、答题纸、草稿纸中的任何一类物品带出考场，也将受到取消本科目成绩的处理。 <br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;祝大家考试顺利！<br><br><br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;----------特&nbsp;&nbsp;别&nbsp;&nbsp;提&nbsp;&nbsp;醒----------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考前认真阅读《考场规则》和《国家教育考试违规处理办法》等考试规定，有助于你了解考试规则，避免因有意或无意的违规而丧失进入高校的机会。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考试中任何违规行为都将受到《国家教育考试违规处理办法》的处罚，并记入至本人诚信考试档案，国家已将有关考试作弊行为纳入刑法范畴，如违规行为触犯了国家刑法，将按照刑法第二百八十四条规定作出处理。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按教育部《国家教育考试违规处理办法》规定：携带具有发送或者接受信息功能的设备的属于作弊行为，这表明，不论考生是否属主观故意与使用与否，一旦将手机等设备带进考场，均将被视为作弊。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从2015年11月1日起开始施行的刑法修正案（九）规定：“在法律规定的国家考试中，组织作弊的，处三年以下有期徒刑或者拘役，并处或者单处罚金；情节严重的，处三年以上七年以下有期徒刑，并处罚金。<br><br>
+        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为他人实施前款犯罪提供作弊器材或者其他帮助的，依照前款的规定处罚。为实施考试作弊行为，向他人非法出售或者提供第一款规定的考试的试题、答案的，依照第一款的规定处罚。代替他人或者让他人代替自己参加第一款规定的考试的，处拘役或者管制，并处或者单处罚金。”<br><br>
+        	</td>
+        </tr>
+    </table>
+    <!--endprint-->
+{% endfor %} 
+    
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+<input type="button" value="打印" class="default" onclick="doPrint();" id="dayin"  name="_save">
+
+    
+    <!-- <p class="deletelink-box"><a href="/admin/bo/student/1/delete/" class="deletelink">删除</a></p> -->
+
+
+<!-- <input type="submit" value="保存并增加另一个" name="_addanother"> -->
+<!-- <input type="submit" value="保存并继续编辑" name="_continue"> -->
+</div>
+
+
+    <script type="text/javascript" id="django-admin-form-add-constants" src="/static/admin/js/change_form.js">
+    </script>
+
+
+
+
+<script type="text/javascript" id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form>
+</div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+
+
+<div class="calendarbox module" id="calendarbox0" style="display: none; position: absolute;"><div><a href="#" class="calendarnav-previous">&lt;</a><a href="#" class="calendarnav-next">&gt;</a></div><div id="calendarin0" class="calendar"><table><caption>四月 2018</caption><tbody><tr><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr><tr><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class=""><a href="#">1</a></td></tr><tr><td class="today"><a href="#">2</a></td><td class=""><a href="#">3</a></td><td class=""><a href="#">4</a></td><td class=""><a href="#">5</a></td><td class=""><a href="#">6</a></td><td class=""><a href="#">7</a></td><td class=""><a href="#">8</a></td></tr><tr><td class=""><a href="#">9</a></td><td class=""><a href="#">10</a></td><td class=""><a href="#">11</a></td><td class=""><a href="#">12</a></td><td class=""><a href="#">13</a></td><td class=""><a href="#">14</a></td><td class=""><a href="#">15</a></td></tr><tr><td class=""><a href="#">16</a></td><td class=""><a href="#">17</a></td><td class=""><a href="#">18</a></td><td class=""><a href="#">19</a></td><td class=""><a href="#">20</a></td><td class=""><a href="#">21</a></td><td class=""><a href="#">22</a></td></tr><tr><td class=""><a href="#">23</a></td><td class=""><a href="#">24</a></td><td class=""><a href="#">25</a></td><td class=""><a href="#">26</a></td><td class=""><a href="#">27</a></td><td class=""><a href="#">28</a></td><td class=""><a href="#">29</a></td></tr><tr><td class=""><a href="#">30</a></td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td><td class="nonday"> </td></tr></tbody></table></div><div class="calendar-shortcuts"><a href="#">昨天</a>&nbsp;|&nbsp;<a href="#">今天</a>&nbsp;|&nbsp;<a href="#">明天</a></div><p class="calendar-cancel"><a href="#">取消</a></p></div></body></html>

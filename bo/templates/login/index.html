@@ -71,19 +71,25 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> 研究生招生</a>
+                            <a href="/zhuye/" target="student"><i class="fa fa-dashboard fa-fw active"></i> 研究生招生</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 网上报名<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/baoming/" target="student">网上报名</a>
+                                    <a href="/gonggao/" target="student">网上报名</a>
                                 </li>
                                 <li>
-                                    <a href="/edit/" target="student">修改报名信息</a>
+                                    <a href="/list/" target="student">查看报名信息</a>
                                 </li>
                                 <li>
-                                    <a href="#" target="student">网上调剂（关闭）</a>
+                                    <a href="/edit/" target="student" onclick="return confirmSubmit();">修改报名信息</a>
+                                </li>
+                                <li>
+                                    <a href="/edit/" target="student">网上缴费</a>
+                                </li>
+                                <li>
+                                    <a href="#">网上调剂（关闭）</a>
                                 </li>
                             </ul>
                         </li>
@@ -91,10 +97,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 打印信息<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">打印准考证</a>
+                                    <a href="/zhunkaozheng/" target="student">打印准考证</a>
                                 </li>
                                 <li>
-                                    <a href="#">打印报名信息</a>
+                                    <a href="/list_dayin/" target="student">打印报名信息</a>
                                 </li>
                             </ul>
                         </li>
@@ -115,17 +121,24 @@
         </nav>
         <!--主体内容编写-->
         <div id="page-wrapper">
-			<iframe src="" id="ifr" width="100%" height="100%" frameborder="0" scrolling="yes" allowTransparency="true" name="student"></iframe>
+			<iframe src="/zhuye/" id="ifr" width="100%" height="100%" frameborder="0" scrolling="yes" allowTransparency="true" name="student"></iframe>
             
         </div>
     </div>
     <script src="/static/js/jquery/jquery.min.js"></script>
     <script src="/static/js/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/js/metisMenu/metisMenu.min.js"></script>
-    <script src="/static/js/raphael/raphael.min.js"></script>
+    <!-- <script src="/static/js/raphael/raphael.min.js"></script> -->
     <script src="/static/js/morrisjs/morris.min.js"></script>
     <script src="/static/js/data/morris-data.js"></script>
     <script src="/static/js/dist/js/sb-admin-2.js"></script>
 </body>
+<script type="text/javascript">
+        function confirmSubmit(){
+            if(confirm('事关重大，想好了么？')){
+                return true;
+            }
+            return false;
+        }
+</script>
 </html>
-js

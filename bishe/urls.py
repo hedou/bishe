@@ -28,5 +28,11 @@ urlpatterns = [
     path('edit/', bo_views.edit),
 
     path('user/verifycode/', bo_views.verifycode),
+    path('gonggao/', bo_views.gonggao),
+    path('chengnuoshu/', bo_views.chengnuoshu),
+    path('zhuye/', bo_views.zhuye),
+    path('list/', bo_views.list),
+    path('list_dayin/', bo_views.list_dayin),
+    path('zhunkaozheng/', bo_views.zhunkaozheng),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

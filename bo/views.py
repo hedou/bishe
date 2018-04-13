@@ -1,12 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Login, Student
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-
-import random
-import urllib
-import http.client
-import json
 
 
 
@@ -16,6 +11,7 @@ def sign_up(request):
         name = request.POST.get('name', '')
         zhengjian_number = request.POST.get('zhengjian_number', '')
         telephone = request.POST.get('phone', '')
+        # request.session['zhengjian_number'] = zhengjian_number
         # yzm = request.POST.get('yzm', '')
 
         ctx['validation_code'] = validation_code = request.POST.get('validation_code', '')
@@ -33,26 +29,88 @@ def sign_up(request):
 
         Login.objects.create(name=name, zhengjian_number=zhengjian_number, telephone=telephone, password=password)
         ctx['haoma'] = Login.objects.filter()
+
+        return render(request, 'login/login_in.html')
     return render(request, 'login/sign_up.html')
 
 def login_in(request):
+
     if request.method == 'POST':
         telephone = request.POST.get('telephone', '')
         password = request.POST.get('password', '')
-
+        request.session['telephone'] = telephone
         flag = Login.objects.filter(telephone=telephone, password=password).first()
         if flag:
+
             return render(request, 'login/index.html')
         else:
             return render(request, 'login/login_in.html')
     return render(request, 'login/login_in.html')
-
+@csrf_exempt 
 def baoming(request):
+    ctx = {}
+    huixianphone = request.session['telephone']
+    ctx['huixianphone'] = huixianphone
     if request.method == 'POST':
         name = request.POST.get('name','')
-        name_pinyin = request.POST.get('name', '')
+        name_pinyin = request.POST.get('name_pinyin', '')
         zhengjian_type = request.POST.get('zhengjian_type', '')
         zhengjian_number = request.POST.get('zhengjian_number', '')
+        zhaopian = request.FILES.get('zhaopian', '')
+        xianyijunren = request.POST.get('xianyijunren', '')
+        minzu = request.POST.get('minzu', '')
+        sex = request.POST.get('sex', '')
+        hunyin = request.POST.get('hunyin', '')
+        zhengzhimianmao = request.POST.get('zhengzhimianmao', '')
+        address = request.POST.get('address', '')
+        postcode = request.POST.get('postcode', '')
+        fixphone = request.POST.get('fixphone', '')
+        telephone = request.POST.get('telephone', '')
+        email = request.POST.get('email', '')
+        laiyuan = request.POST.get('laiyuan', '')
+        graduation_type = request.POST.get('graduation_type', '')
+        graduation_time = request.POST.get('graduation_time', '')
+        graduation_time = datetime.datetime.strptime(graduation_time,"%Y/%m/%d").strftime("%Y-%m-%d")
+        studentId = request.POST.get('studentId' , 'studentId')
+        graduation_school = request.POST.get('graduation_school', '')
+        graduation_zhuanye = request.POST.get('graduation_zhuanye', '')
+        baokao_type = request.POST.get('baokao_type', '')
+        nativePlace = request.POST.get('nativePlace', '')
+        registerLocation = request.POST.get('registerLocation', '')
+        registerLocationDetail = request.POST.get('registerLocationDetail', '')
+        bornLocation = request.POST.get('bornLocation', '')
+        archivesLocation = request.POST.get('archivesLocation', '')
+        archivesLocationZip = request.POST.get('archivesLocationZip', '')
+        departmentsName = request.POST.get('departmentsName', '')
+        professionalName = request.POST.get('professionalName', '')
+        researchDirection = request.POST.get('researchDirection', '')
+        examCourse = request.POST.get('examCourse', '')
+        examProvince = request.POST.get('examProvince', '')
+        examSchool = request.POST.get('examSchool', '')
+
+        Student.objects.create(name=name, name_pinyin=name_pinyin, zhengjian_type=zhengjian_type, zhengjian_number=zhengjian_number, zhaopian=zhaopian,
+            xianyijunren=xianyijunren, minzu=minzu, sex=sex, hunyin=hunyin, zhengzhimianmao=zhengzhimianmao, address=address,
+            postcode=postcode, fixphone=fixphone,
+            telephone=telephone, email=email, laiyuan=laiyuan, graduation_type=graduation_type, graduation_time=graduation_time, studentId=studentId,
+            graduation_school=graduation_school, graduation_zhuanye=graduation_zhuanye, baokao_type=baokao_type, nativePlace=nativePlace,
+            registerLocation=registerLocation, registerLocationDetail=registerLocationDetail, bornLocation=bornLocation,
+            archivesLocation=archivesLocation, archivesLocationZip=archivesLocationZip, departmentsName=departmentsName,
+            professionalName=professionalName, researchDirection=researchDirection, examCourse=examCourse, examProvince=examProvince,
+            examSchool=examSchool)
+        return redirect(list)
+    return render(request, 'login/baoming.html', ctx)
+@csrf_exempt 
+def edit(request):
+    ctx = {}
+    zhengjian_number = request.session['zhengjian_number']
+    xinxi = Student.objects.filter(zhengjian_number=zhengjian_number).first()
+    ctx['xinxi'] = xinxi
+    if request.method == 'POST':
+        name = request.POST.get('name','')
+        name_pinyin = request.POST.get('name_pinyin', '')
+        zhengjian_type = request.POST.get('zhengjian_type', '')
+        zhengjian_number = request.POST.get('zhengjian_number', '')
+        zhaopian = request.FILES.get('zhaopian', '')
         xianyijunren = request.POST.get('xianyijunren', '')
         minzu = request.POST.get('minzu', '')
         sex = request.POST.get('sex', '')
@@ -83,7 +141,7 @@ def baoming(request):
         examProvince = request.POST.get('examProvince', '')
         examSchool = request.POST.get('examSchool', '')
 
-        Student.objects.create(name=name, name_pinyin=name_pinyin, zhengjian_type=zhengjian_type, zhengjian_number=zhengjian_number,
+        Student.objects.filter(zhengjian_number=zhengjian_number).update(name=name, name_pinyin=name_pinyin, zhengjian_type=zhengjian_type, zhengjian_number=zhengjian_number,zhaopian=zhaopian,
             xianyijunren=xianyijunren, minzu=minzu, sex=sex, hunyin=hunyin, zhengzhimianmao=zhengzhimianmao, address=address,
             postcode=postcode, fixphone=fixphone,
             telephone=telephone, email=email, laiyuan=laiyuan, graduation_type=graduation_type, graduation_time=graduation_time, studentId=studentId,
@@ -92,8 +150,8 @@ def baoming(request):
             archivesLocation=archivesLocation, archivesLocationZip=archivesLocationZip, departmentsName=departmentsName,
             professionalName=professionalName, researchDirection=researchDirection, examCourse=examCourse, examProvince=examProvince,
             examSchool=examSchool)
-        return render(request, 'login/update.html')
-    return render(request, 'login/baoming.html')
+        return redirect(list)
+    return render(request, 'login/edit.html', ctx)
 
 
 @csrf_exempt
@@ -131,14 +189,66 @@ def verifycode(request):
 
     return HttpResponse(json.dumps(dic), content_type='application/json')
 
+
 def updatepwd(request):
+    ctx = {}
+    telephone = request.session['telephone']
+    if request.method == 'POST':
+        password = request.POST.get('new_password2', '')
+        Login.objects.filter(telephone=telephone).update(password=password)
+        chenggong = 1
+        ctx['chenggong'] = chenggong
 
-    return render(request, 'login/updatepwd.html')
+    return render(request, 'login/updatepwd.html', ctx)
 
-def edit(request):
 
-<<<<<<< HEAD
-    return render(request, 'login/edit.html')
-=======
+def list(request):
+    ctx = {}
+    telephone = request.session['telephone']
+    xinxi_list = Student.objects.filter(telephone=telephone)
+    ctx['xinxi_list'] = xinxi_list
 
->>>>>>> refs/remotes/origin/master
+    return render(request, 'login/list.html', ctx)
+
+
+def list_dayin(request):
+
+    ctx = {}
+    telephone = request.session['telephone']
+    xinxi_list = Student.objects.filter(telephone=telephone)
+    ctx['xinxi_list'] = xinxi_list
+
+    return render(request, 'login/list_dayin.html', ctx)
+
+
+
+def gonggao(request):
+    
+
+    return render(request, 'login/gonggao.html')
+
+def chengnuoshu(request):
+
+    return render(request, 'login/chengnuoshu.html')
+
+def zhuye(request):
+
+    return render(request, 'login/zhuye.html')
+
+
+def zhunkaozheng(request):
+
+    ctx = {}
+    telephone = request.session['telephone']
+    xinxi_list = Student.objects.filter(telephone=telephone)
+    ctx['xinxi_list'] = xinxi_list
+
+    return render(request, 'login/zhunkaozheng.html', ctx)
+
+
+
+
+
+
+
+

@@ -3,7 +3,9 @@
 <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
 <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
 
-
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.js"></script>
+    <link href="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.css" rel="stylesheet">
 
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
@@ -22,41 +24,7 @@
 <body class="" data-admin-utc-offset="0">
 
 <!-- Container -->
-<div id="container">
-
-    
-    <!-- Header -->
-    <!-- <div id="header">
-        <div id="branding">
-        
-<h1 id="site-name"><a href="/admin/">研究生报名系统</a></h1>
-
-        </div>
-        
-        
-        <div id="user-tools">
-            
-                欢迎，
-                <strong>admin</strong>.
-            
-             修改密码 / <a href="/admin/logout/">注销</a>
-        </div>
-        
-        
-        
-    </div> -->
-    <!-- END Header -->
-    
-<!-- <div class="breadcrumbs">
-<a href="/admin/">首页</a>
-› 密码修改
-</div>
- -->
-    
-
-    
-        
-    
+<div id="container">    
 
     <!-- Content -->
     <div id="content" class="colM">
@@ -64,19 +32,21 @@
         <h1>密码修改</h1>
         <div id="content-main">
 
-<form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="ZivpnEyzlRHtNVU3RUWq756fjdKXYVeg3TCETPNeiPuiAHyymDbj09lLL43CRCP1">
+<form method="post" action="" id="operation-password">
+{% csrf_token %} 
+    <!-- <input type="hidden" name="csrfmiddlewaretoken" value="ZivpnEyzlRHtNVU3RUWq756fjdKXYVeg3TCETPNeiPuiAHyymDbj09lLL43CRCP1"> -->
 <div>
 
 
 
-<p>请输入你的旧密码，为了安全起见，接着要输入两遍新密码，以便我们校验你输入的是否正确。</p>
+<!-- <p>请输入你的旧密码，为了安全起见，接着要输入两遍新密码，以便我们校验你输入的是否正确。</p> -->
 
 <fieldset class="module aligned wide">
 
-<div class="form-row">
+<!-- <div class="form-row">
     
     <label class="required" for="id_old_password">旧密码:</label> <input type="password" name="old_password" id="id_old_password" required="" autofocus="">
-</div>
+</div> -->
 
 <div class="form-row">
     
@@ -111,6 +81,18 @@
 </div>
 <!-- END Container -->
 
+<script type="text/javascript">
+    $(document).ready(function(){
 
+
+    var chenggong = "{{chenggong}}";
+    
+    if (chenggong == 1) {
+        top.location="/login_in/";
+    }
+
+  
+});
+</script>
 
 </body></html>
