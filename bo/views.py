@@ -246,8 +246,18 @@ def zhunkaozheng(request):
     return render(request, 'login/zhunkaozheng.html', ctx)
 
 
+@csrf_exempt
+def checkPhone(request):
 
-
+    phone = request.POST.get('phone', '')
+    print(phone)
+    flag = Login.objects.filter(telephone=phone)
+    if flag:
+        jj = 0;
+    else:
+        jj =1;
+    return HttpResponse(jj)
+        
 
 
 
