@@ -2,8 +2,14 @@ from django.shortcuts import render,redirect
 from .models import Login, Student
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-
-
+import random
+import urllib
+import http
+import json
+import datetime
+import sys
+import requests
+import qrcode
 
 def sign_up(request):
     ctx = {}
@@ -102,8 +108,8 @@ def baoming(request):
 @csrf_exempt 
 def edit(request):
     ctx = {}
-    zhengjian_number = request.session['zhengjian_number']
-    xinxi = Student.objects.filter(zhengjian_number=zhengjian_number).first()
+    telephone = request.session['telephone']
+    xinxi = Student.objects.filter(telephone=telephone).first()
     ctx['xinxi'] = xinxi
     if request.method == 'POST':
         name = request.POST.get('name','')
@@ -259,6 +265,10 @@ def checkPhone(request):
     return HttpResponse(jj)
         
 
-
+def erweima(request):
+    ctx = {}
+    # img=qrcode.make("已付款")  
+    # img.save("E:Some.png")  
+    return render(request, 'login/erweima.html', ctx)
 
 

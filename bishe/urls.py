@@ -35,5 +35,6 @@ urlpatterns = [
     path('list_dayin/', bo_views.list_dayin),
     path('zhunkaozheng/', bo_views.zhunkaozheng),
     path('checkPhone/', bo_views.checkPhone),
+    path('erweima/', bo_views.erweima),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
